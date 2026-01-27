@@ -96,69 +96,68 @@
         </div>
     </div>
 
-    <script>
-        // 데이터 (안전하게 내부에 포함)
-        const trackData = {
-            'album1': [{ id: 'hZobKyyxOOo', title: "Surfer's High", lyrics: "Summer breeze kisses my neck..." }],
-            'album2': [
-                { id: 'VCKuDWuP42w', title: '도둑들', lyrics: "책임감을 태워서 몸을 덥히는 연인들..." },
-                { id: 'IvWCO2fxZjE', title: 'Bloody Mary', lyrics: "녹아내린 촛농을 주워 담았던..." },
-                { id: 'jaHmnmuSU-o', title: 'Confidence Game', lyrics: "우린 너희 아버지의 차를 훔쳐 달아나..." }
-            ],
-            'album3': [{ id: 'Y7YLA39Nx7M', title: '불균형', lyrics: "당신께 주려고 내가 산 꽃은..." }],
-            'album4': [
-                { id: 'qccfzgN_fqo', title: '이방인', lyrics: "빈 눈으로 노래를 불러..." },
-                { id: 'LbEms0LvPPg', title: '하루방', lyrics: "아무도 믿지 않는 건..." },
-                { id: 'PImRFmtnPhA', title: '불균형', lyrics: "당신께 주려고 내가 산 꽃은..." },
-                { id: 'LRkIJjx8NiY', title: 'Pond Scum', lyrics: "잠시 삐끗한 탓에 주저앉았네..." },
-                { id: 'q9KVKkiA5zc', title: '배수', lyrics: "세면대에 물을 틀어 놓고..." }
-            ],
-            'album5': [{ id: 'MeJzAwzUmtM', title: '언니', lyrics: "소녀들은 바닷가에..." }],
-            'album6': [
-                { id: 'AVhv_xvxGCs', title: 'Intro', lyrics: "초라한 나의 집..." },
-                { id: 'q7IPVW3u75U', title: '꽃', lyrics: "어리고 예쁜 꽃이 피어서..." },
-                { id: 'mlg8fAviQp8', title: '잔디', lyrics: "참아 넌 선택을 존중받았던..." },
-                { id: '7hAH-4XWTvY', title: '언니', lyrics: "소녀들은 바닷가에..." },
-                { id: 'rHimHRSNcvo', title: '모래알', lyrics: "나의 눈의 뒤에..." }
-            ]
-        };
+    <script src="data/lyrics.js"></script>
 
-        // 클릭 핸들러
+    <script>
+        // 1. 클릭 핸들러 (EP/Single 자동 판별)
         function handleAlbumClick(albumId) {
+            if (typeof trackData === 'undefined') {
+                console.error("데이터 파일(data/lyrics.js)을 찾을 수 없습니다.");
+                return;
+            }
+
             const tracks = trackData[albumId];
             if (!tracks) return;
 
             if (tracks.length > 1) {
+                // EP: 트랙 리스트 생성
                 const container = document.getElementById('track-container');
                 let html = '<div class="song-list">';
                 tracks.forEach(t => {
-                    html += `<button class="song-btn" onclick="showPlayer('${t.id}', \`${t.lyrics.replace(/`/g, '\\`')}\`)">${t.title}</button>`;
+                    // 가사 내 백틱(`) 기호가 충돌나지 않게 처리
+                    const safeLyrics = t.lyrics.replace(/`/g, '\\`');
+                    html += `<button class="song-btn" onclick="showPlayer('${t.id}', \`${safeLyrics}\`)">${t.title}</button>`;
                 });
                 html += '</div>';
                 container.innerHTML = html;
                 container.style.display = 'block';
                 document.getElementById('display-area').style.display = 'none';
             } else {
-                showPlayer(tracks[0].id, tracks[0].lyrics);
+                // Single: 즉시 재생
                 document.getElementById('track-container').style.display = 'none';
+                showPlayer(tracks[0].id, tracks[0].lyrics);
             }
         }
 
+        // 2. 플레이어 및 가사 표시
         function showPlayer(videoId, lyrics) {
             const display = document.getElementById('display-area');
             display.style.display = 'block';
             document.getElementById('youtube-video').src = "https://www.youtube.com/embed/" + videoId + "?autoplay=1";
             document.getElementById('lyrics-text').innerText = lyrics;
+            
+            // 화면 이동
             window.scrollTo({ top: display.offsetTop - 20, behavior: 'smooth' });
         }
 
-        // 슬라이더 드래그 로직 (생략 가능하지만 유지)
+        // 3. 앨범 그리드 드래그 로직
         const slider = document.getElementById('albumGrid');
         let isDown = false, startX, scrollLeft;
-        slider.onmousedown = (e) => { isDown = true; startX = e.pageX - slider.offsetLeft; scrollLeft = slider.scrollLeft; };
+
+        slider.onmousedown = (e) => {
+            isDown = true;
+            startX = e.pageX - slider.offsetLeft;
+            scrollLeft = slider.scrollLeft;
+        };
         slider.onmouseup = () => isDown = false;
         slider.onmouseleave = () => isDown = false;
-        slider.onmousemove = (e) => { if(!isDown) return; e.preventDefault(); const x = e.pageX - slider.offsetLeft; slider.scrollLeft = scrollLeft - (x - startX) * 2; };
+        slider.onmousemove = (e) => {
+            if(!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - slider.offsetLeft;
+            const walk = (x - startX) * 2;
+            slider.scrollLeft = scrollLeft - walk;
+        };
     </script>
 </body>
 </html>
