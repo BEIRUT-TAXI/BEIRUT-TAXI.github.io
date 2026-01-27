@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BEIRUT TAXI - MEMBERS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
             background-color: #0d0d0d;
@@ -11,12 +12,13 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            font-family: 'FreeSerif', serif;
+            /* 폰트 수정: 한글 전용 폰트 우선 적용 */
+            font-family: 'Noto Sans KR', 'FreeSerif', serif;
             margin: 0;
             padding: 50px 20px;
         }
 
-        h1 { font-size: 3rem; color: #ffcc00; letter-spacing: 5px; margin-bottom: 50px; }
+        h1 { font-size: 3rem; color: #ffcc00; letter-spacing: 5px; margin-bottom: 50px; font-weight: 700; }
 
         /* 2x2 그리드 설정 */
         .member-grid {
@@ -42,8 +44,8 @@
             margin-bottom: 20px;
         }
 
-        .member-card h3 { font-size: 1.5rem; margin: 10px 0; }
-        .member-card p { color: #888; }
+        .member-card h3 { font-size: 1.5rem; margin: 10px 0; font-weight: 700; }
+        .member-card p { color: #888; font-weight: 400; }
 
         /* 메인으로 돌아가기 버튼 */
         .back-btn {
