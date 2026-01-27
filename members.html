@@ -32,7 +32,6 @@
             text-transform: uppercase;
         }
 
-        /* 메인 페이지와 동일한 2단 구조 */
         .main-container {
             display: flex;
             width: 90%;
@@ -41,7 +40,7 @@
             gap: 50px;
         }
 
-        /* 왼쪽 메뉴 레이아웃 유지 */
+        /* 왼쪽 메뉴 */
         nav {
             display: flex;
             flex-direction: column;
@@ -58,14 +57,10 @@
             transition: 0.3s;
         }
 
-        nav a:hover {
-            color: #ffcc00;
-        }
+        nav a:hover { color: #ffcc00; }
 
-        /* 오른쪽 컨텐츠: 멤버 그리드 */
-        .member-content {
-            flex-grow: 1;
-        }
+        /* 멤버 그리드 */
+        .member-content { flex-grow: 1; }
 
         .member-grid {
             display: grid;
@@ -88,7 +83,6 @@
             margin-bottom: 15px;
         }
 
-        /* 한글 이름 고딕 적용 */
         .member-card h3 { 
             font-size: 1.4rem; 
             margin: 10px 0; 
@@ -97,11 +91,42 @@
             color: #fff;
         }
 
-        /* 파트 세리프 적용 */
-        .member-card p { 
-            color: #888; 
-            font-size: 1rem;
-            margin: 0;
+        .member-card p { color: #888; font-size: 1rem; margin: 0; }
+
+        /* ==========================================
+           📱 모바일용 스타일 (화면이 작아질 때)
+        ========================================== */
+        @media (max-width: 768px) {
+            header { margin-top: 40px; }
+            h1 { font-size: 2.2rem; }
+
+            .main-container {
+                flex-direction: column; /* 세로 정렬로 변경 */
+                align-items: center;
+                gap: 30px;
+                margin-top: 30px;
+            }
+
+            nav {
+                flex-direction: row; /* 메뉴를 가로로 배치 */
+                justify-content: center;
+                gap: 20px;
+                min-width: auto;
+                width: 100%;
+                border-bottom: 1px solid #333;
+                padding-bottom: 20px;
+            }
+
+            nav a {
+                margin-bottom: 0;
+                font-size: 1rem;
+            }
+
+            .member-grid {
+                grid-template-columns: 1fr; /* 멤버 카드를 한 줄에 하나씩 */
+            }
+
+            .member-card { padding: 20px; }
         }
     </style>
 </head>
