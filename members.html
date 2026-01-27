@@ -12,32 +12,70 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            /* 기본 폰트를 FreeSerif로 설정 (영문에 우선 적용됨) */
             font-family: 'FreeSerif', serif;
             margin: 0;
-            padding: 50px 20px;
+            padding: 0;
+            padding-bottom: 100px;
         }
 
-        /* 상단 노란색 타이틀: FreeSerif 적용 */
+        header {
+            margin-top: 80px;
+            text-align: center;
+            width: 100%;
+        }
+
         h1 { 
             font-size: 3rem; 
             color: #ffcc00; 
             letter-spacing: 5px; 
-            margin-bottom: 50px; 
-            font-family: 'FreeSerif', serif; 
+            margin: 0; 
+            text-transform: uppercase;
+        }
+
+        /* 메인 페이지와 동일한 2단 구조 */
+        .main-container {
+            display: flex;
+            width: 90%;
+            max-width: 1100px;
+            margin-top: 60px;
+            gap: 50px;
+        }
+
+        /* 왼쪽 메뉴 레이아웃 유지 */
+        nav {
+            display: flex;
+            flex-direction: column;
+            min-width: 150px;
+            text-align: left;
+        }
+
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            margin-bottom: 25px;
+            font-size: 1.3rem;
+            letter-spacing: 2px;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #ffcc00;
+        }
+
+        /* 오른쪽 컨텐츠: 멤버 그리드 */
+        .member-content {
+            flex-grow: 1;
         }
 
         .member-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 40px;
-            width: 100%;
-            max-width: 800px;
+            gap: 30px;
         }
 
         .member-card {
             background-color: #1a1a1a;
-            padding: 30px;
+            padding: 25px;
             text-align: center;
             border-radius: 10px;
         }
@@ -47,60 +85,60 @@
             aspect-ratio: 1/1;
             object-fit: cover;
             filter: grayscale(100%);
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
-        /* 멤버 한글 이름: Noto Sans KR (고딕) 강제 적용 */
+        /* 한글 이름 고딕 적용 */
         .member-card h3 { 
-            font-size: 1.6rem; 
+            font-size: 1.4rem; 
             margin: 10px 0; 
             font-family: 'Noto Sans KR', sans-serif; 
             font-weight: 700;
             color: #fff;
         }
 
-        /* 파트(Vocal, Bass 등): FreeSerif 적용 */
+        /* 파트 세리프 적용 */
         .member-card p { 
             color: #888; 
-            font-family: 'FreeSerif', serif; 
-            font-size: 1.1rem;
-        }
-
-        /* 돌아가기 버튼: FreeSerif 적용 */
-        .back-btn {
-            margin-top: 50px;
-            color: #ffffff;
-            text-decoration: none;
-            border-bottom: 1px solid #ffcc00;
-            padding-bottom: 5px;
-            font-family: 'FreeSerif', serif;
+            font-size: 1rem;
+            margin: 0;
         }
     </style>
 </head>
 <body>
 
-    <h1>MEMBERS</h1>
+    <header>
+        <h1>MEMBERS</h1>
+    </header>
 
-    <div class="member-grid">
-        <div class="member-card">
-            <img src="https://github.com/aalsdbstlr-oss/aalsdbstlr-oss.github.io/blob/main/images/vocal.jpg?raw=true" alt="Vocal">
-            <h3>유지영</h3><p>Vocal</p>
-        </div>
-        <div class="member-card">
-            <img src="https://github.com/aalsdbstlr-oss/aalsdbstlr-oss.github.io/blob/main/images/bass.jpg?raw=true" alt="Bass">
-            <h3>최명호</h3><p>BASS</p>
-        </div>
-        <div class="member-card">
-            <img src="https://github.com/aalsdbstlr-oss/aalsdbstlr-oss.github.io/blob/main/images/drum2.jpg?raw=true" alt="Drum">
-            <h3>민윤식</h3><p>Drum</p>
-        </div>
-        <div class="member-card">
-            <img src="https://github.com/aalsdbstlr-oss/aalsdbstlr-oss.github.io/blob/main/images/guitar.jpg?raw=true" alt="Guitar">
-            <h3>김도혁</h3><p>Guitar</p>
+    <div class="main-container">
+        <nav>
+            <a href="index.html">BRTX</a>
+            <a href="https://www.youtube.com/@BRTX_BAND" target="_blank">PLAY</a>
+            <a href="https://www.instagram.com/brtx_band/" target="_blank">CONTACT</a>
+        </nav>
+
+        <div class="member-content">
+            <div class="member-grid">
+                <div class="member-card">
+                    <img src="https://github.com/aalsdbstlr-oss/aalsdbstlr-oss.github.io/blob/main/images/vocal.jpg?raw=true" alt="Vocal">
+                    <h3>유지영</h3><p>Vocal</p>
+                </div>
+                <div class="member-card">
+                    <img src="https://github.com/aalsdbstlr-oss/aalsdbstlr-oss.github.io/blob/main/images/bass.jpg?raw=true" alt="Bass">
+                    <h3>최명호</h3><p>BASS</p>
+                </div>
+                <div class="member-card">
+                    <img src="https://github.com/aalsdbstlr-oss/aalsdbstlr-oss.github.io/blob/main/images/drum2.jpg?raw=true" alt="Drum">
+                    <h3>민윤식</h3><p>Drum</p>
+                </div>
+                <div class="member-card">
+                    <img src="https://github.com/aalsdbstlr-oss/aalsdbstlr-oss.github.io/blob/main/images/guitar.jpg?raw=true" alt="Guitar">
+                    <h3>김도혁</h3><p>Guitar</p>
+                </div>
+            </div>
         </div>
     </div>
-
-    <a href="index.html" class="back-btn">BACK TO HOME</a>
 
 </body>
 </html>
