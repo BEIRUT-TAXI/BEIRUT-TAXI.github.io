@@ -30,7 +30,10 @@
         
         .album-info { font-family: 'Noto Sans KR', sans-serif; text-align: left; }
         .album-info .title { font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: 4px; }
-        .album-info .type { font-size: 0.85rem; color: #888; }
+        
+        /* 타입과 날짜 스타일 통일 */
+        .album-info .type, 
+        .album-info .date { font-size: 0.85rem; color: #888; font-weight: 300; margin-top: 2px; }
 
         .track-drop-area { display: none; width: 100%; margin-top: 20px; border-top: 1px solid #222; padding-top: 20px; }
         .song-list { display: flex; gap: 20px; flex-wrap: wrap; }
@@ -64,27 +67,51 @@
             <div class="album-grid" id="albumGrid">
                 <div class="album-card" onclick="handleAlbumClick('album6')">
                     <img src="https://github.com/BRTXdraft/BRTXdraft.github.io/blob/main/images/artwork/06_EP_moraeal.jpg?raw=true">
-                    <div class="album-info"><div class="title">모래알</div><div class="type">EP</div></div><div class="date">2025.01.26</div>
+                    <div class="album-info">
+                        <div class="title">모래알</div>
+                        <div class="type">EP</div>
+                        <div class="date">2025.01.26</div>
+                    </div>
                 </div>
                 <div class="album-card" onclick="handleAlbumClick('album5')">
                     <img src="https://github.com/BRTXdraft/BRTXdraft.github.io/blob/main/images/artwork/05_single_eonni.jpg?raw=true">
-                    <div class="album-info"><div class="title">언니</div><div class="type">Single</div></div><div class="date">2024.08.31</div>
+                    <div class="album-info">
+                        <div class="title">언니</div>
+                        <div class="type">Single</div>
+                        <div class="date">2024.08.31</div>
+                    </div>
                 </div>
                 <div class="album-card" onclick="handleAlbumClick('album4')">
                     <img src="https://github.com/BRTXdraft/BRTXdraft.github.io/blob/main/images/artwork/04_EP_seesaw.jpg?raw=true">
-                    <div class="album-info"><div class="title">시소</div><div class="type">EP</div></div><div class="date">2023.12.27</div>
+                    <div class="album-info">
+                        <div class="title">시소</div>
+                        <div class="type">EP</div>
+                        <div class="date">2023.12.27</div>
+                    </div>
                 </div>
                 <div class="album-card" onclick="handleAlbumClick('album3')">
                     <img src="https://github.com/BRTXdraft/BRTXdraft.github.io/blob/main/images/artwork/03_single_unbalanced.jpeg?raw=true">
-                    <div class="album-info"><div class="title">불균형</div><div class="type">Single</div></div><div class="date">2023.07.28</div>
+                    <div class="album-info">
+                        <div class="title">불균형</div>
+                        <div class="type">Single</div>
+                        <div class="date">2023.07.28</div>
+                    </div>
                 </div>
                 <div class="album-card" onclick="handleAlbumClick('album2')">
                     <img src="https://github.com/BRTXdraft/BRTXdraft.github.io/blob/main/images/artwork/02_EP_yeonso.jpg?raw=true">
-                    <div class="album-info"><div class="title">연소</div><div class="type">EP</div></div><div class="date">2022.08.23</div>
+                    <div class="album-info">
+                        <div class="title">연소</div>
+                        <div class="type">EP</div>
+                        <div class="date">2022.08.23</div>
+                    </div>
                 </div>
                 <div class="album-card" onclick="handleAlbumClick('album1')">
                     <img src="https://github.com/BRTXdraft/BRTXdraft.github.io/blob/main/images/artwork/01_single_surfer's%20high.jpg?raw=true">
-                    <div class="album-info"><div class="title">Surfer's High</div><div class="type">Single</div></div><div class="date">2022.06.23</div>
+                    <div class="album-info">
+                        <div class="title">Surfer's High</div>
+                        <div class="type">Single</div>
+                        <div class="date">2022.06.23</div>
+                    </div>
                 </div>
             </div>
 
@@ -99,22 +126,18 @@
     <script src="data/lyrics.js"></script>
 
     <script>
-        // 1. 클릭 핸들러 (EP/Single 자동 판별)
         function handleAlbumClick(albumId) {
             if (typeof trackData === 'undefined') {
                 console.error("데이터 파일(data/lyrics.js)을 찾을 수 없습니다.");
                 return;
             }
-
             const tracks = trackData[albumId];
             if (!tracks) return;
 
             if (tracks.length > 1) {
-                // EP: 트랙 리스트 생성
                 const container = document.getElementById('track-container');
                 let html = '<div class="song-list">';
                 tracks.forEach(t => {
-                    // 가사 내 백틱(`) 기호가 충돌나지 않게 처리
                     const safeLyrics = t.lyrics.replace(/`/g, '\\`');
                     html += `<button class="song-btn" onclick="showPlayer('${t.id}', \`${safeLyrics}\`)">${t.title}</button>`;
                 });
@@ -123,41 +146,25 @@
                 container.style.display = 'block';
                 document.getElementById('display-area').style.display = 'none';
             } else {
-                // Single: 즉시 재생
                 document.getElementById('track-container').style.display = 'none';
                 showPlayer(tracks[0].id, tracks[0].lyrics);
             }
         }
 
-        // 2. 플레이어 및 가사 표시
         function showPlayer(videoId, lyrics) {
             const display = document.getElementById('display-area');
             display.style.display = 'block';
             document.getElementById('youtube-video').src = "https://www.youtube.com/embed/" + videoId + "?autoplay=1";
             document.getElementById('lyrics-text').innerText = lyrics;
-            
-            // 화면 이동
             window.scrollTo({ top: display.offsetTop - 20, behavior: 'smooth' });
         }
 
-        // 3. 앨범 그리드 드래그 로직
         const slider = document.getElementById('albumGrid');
         let isDown = false, startX, scrollLeft;
-
-        slider.onmousedown = (e) => {
-            isDown = true;
-            startX = e.pageX - slider.offsetLeft;
-            scrollLeft = slider.scrollLeft;
-        };
+        slider.onmousedown = (e) => { isDown = true; startX = e.pageX - slider.offsetLeft; scrollLeft = slider.scrollLeft; };
         slider.onmouseup = () => isDown = false;
         slider.onmouseleave = () => isDown = false;
-        slider.onmousemove = (e) => {
-            if(!isDown) return;
-            e.preventDefault();
-            const x = e.pageX - slider.offsetLeft;
-            const walk = (x - startX) * 2;
-            slider.scrollLeft = scrollLeft - walk;
-        };
+        slider.onmousemove = (e) => { if(!isDown) return; e.preventDefault(); const x = e.pageX - slider.offsetLeft; const walk = (x - startX) * 2; slider.scrollLeft = scrollLeft - walk; };
     </script>
 </body>
 </html>
