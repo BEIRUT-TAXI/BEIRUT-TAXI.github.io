@@ -1,16 +1,92 @@
-<!DOCTYPE html>
-<html>
-<body>
-    <h1>내 밴드 컨텐츠 저장소</h1>
-    <p id="status"></p>
+밴드 이름을 BEIRUT TAXI로 반영하여, 검은 배경과 세련된 감각이 느껴지는 코드로 다시 짜드렸습니다. 이 코드를 index.html에 그대로 복사해서 붙여넣으시면 됩니다.
 
-    <script>
-        // 오늘 배운 변수와 백틱 활용!
-        let bandName = "베이루트택시";
-        let isPublic = true;
-        
-        document.getElementById("status").innerText = 
-            `현재 ${bandName} 사이트는 ${isPublic} 상태입니다.`;
-    </script>
+🎨 BEIRUT TAXI 커스텀 코드
+HTML
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BEIRUT TAXI Official</title>
+    <style>
+        /* 기본 배경 설정: 검은색 배경과 부드러운 흰색 글씨 */
+        body {
+            background-color: #0d0d0d;
+            color: #e0e0e0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: 'Pretendard', sans-serif; /* 깔끔한 폰트 */
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+
+        /* 헤더 스타일링 */
+        header {
+            margin-top: 60px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 3rem;
+            letter-spacing: 5px; /* 글자 간격을 넓혀서 밴드 느낌 강조 */
+            margin-bottom: 10px;
+            color: #ffffff;
+            text-transform: uppercase;
+        }
+
+        /* 밴드 사진 스타일 */
+        .photo-container {
+            width: 90%;
+            max-width: 800px;
+            margin: 40px 0;
+            border: 1px solid #333; /* 얇은 테두리로 고급스럽게 */
+            padding: 10px;
+            background-color: #1a1a1a;
+        }
+
+        .band-photo {
+            width: 100%;
+            display: block;
+            filter: grayscale(30%); /* 약간의 회색톤으로 분위기 있게 */
+            transition: 0.5s;
+        }
+
+        .band-photo:hover {
+            filter: grayscale(0%); /* 마우스를 올리면 색상이 살아남 */
+        }
+
+        /* 소개 문구 스타일 */
+        .intro-section {
+            max-width: 600px;
+            text-align: center;
+            line-height: 1.8;
+            padding: 0 20px 60px 20px;
+        }
+
+        .highlight {
+            color: #ffcc00; /* 포인트 컬러 (택시 느낌의 노란색) */
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>BEIRUT TAXI</h1>
+        <p>Ride with the Sound</p>
+    </header>
+
+    <div class="photo-container">
+        <img src="https://via.placeholder.com/800x500/1a1a1a/ffffff?text=BEIRUT+TAXI+PHOTO" alt="BEIRUT TAXI 사진" class="band-photo">
+    </div>
+
+    <div class="intro-section">
+        <p>
+            안녕하세요, <span class="highlight">BEIRUT TAXI</span>입니다.<br>
+        </p>
+    </div>
+
 </body>
 </html>
