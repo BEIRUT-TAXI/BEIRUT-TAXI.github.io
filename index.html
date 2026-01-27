@@ -5,67 +5,77 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BEIRUT TAXI Official</title>
     <style>
-        /* 기본 배경 설정 */
         body {
             background-color: #0d0d0d;
             color: #e0e0e0;
             display: flex;
             flex-direction: column;
             align-items: center;
-            /* FreeSerif 폰트 적용 (시스템에 없을 경우를 대비해 Serif 계열 포함) */
-            font-family: 'FreeSerif', 'Times New Roman', serif; 
+            font-family: 'FreeSerif', 'Times New Roman', serif;
             margin: 0;
             padding: 0;
-            min-height: 100vh;
+            /* 3. 아래쪽에 넉넉한 여백을 주어 세로로 긴 느낌을 줍니다 */
+            padding-bottom: 300px; 
         }
 
         header {
             margin-top: 80px;
             text-align: center;
+            width: 100%;
         }
 
         h1 {
-            font-size: 4rem; /* 밴드명을 더 강조 */
+            font-size: 4rem;
             letter-spacing: 3px;
-            margin-bottom: 5px;
+            margin: 0;
             color: #ffffff;
             text-transform: uppercase;
         }
 
         .slogan {
             font-size: 1.2rem;
-            color: #ffcc00; /* 택시 포인트 컬러 유지 */
-            letter-spacing: 1px;
+            color: #ffcc00;
             font-style: italic;
+            margin-top: 10px;
         }
 
-        /* 밴드 사진 컨테이너 */
-        .photo-container {
+        /* 전체 컨텐츠 레이아웃 */
+        .main-container {
+            display: flex;
             width: 90%;
-            max-width: 850px;
-            margin-top: 50px;
-            padding: 10px;
-            background-color: #1a1a1a;
-            border: 1px solid #333;
+            max-width: 1100px;
+            margin-top: 60px;
+            gap: 40px; /* 메뉴와 사진 사이 간격 */
         }
 
-        .band-photo {
+        /* 1. 왼쪽 메뉴 정렬 스타일 */
+        nav {
+            display: flex;
+            flex-direction: column; /* 세로로 나열 */
+            min-width: 120px;
+            text-align: left;
+        }
+
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+            letter-spacing: 2px;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #ffcc00;
+            padding-left: 10px; /* 마우스 올리면 살짝 밀리는 효과 */
+        }
+
+        /* 2. 사진 스타일 (테두리 배경 영역 제거) */
+        .photo-content {
+            flex-grow: 1;
+        }
+
+        img {
             width: 100%;
+            max-width: 800px;
             display: block;
-            transition: 0.5s;
-        }
-    </style>
-</head>
-<body>
-
-    <header>
-        <h1>BEIRUT TAXI</h1>
-        <div class="slogan">Hope you enjoy the ride.</div>
-    </header>
-
-    <div class="photo-container">
-        <img src="https://github.com/aalsdbstlr-oss/ALSYSK.github.io/blob/main/%ED%8A%A0%EC%97%85%20%EC%A0%9C%EC%B6%9C%EC%9A%A9_200dpi.png?raw=true" class="band-photo">
-    </div>
-
-</body>
-</html>
