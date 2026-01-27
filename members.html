@@ -4,16 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BEIRUT TAXI - MEMBERS</title>
-    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Noto+Sans+KR:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500;700&display=swap" rel="stylesheet">
     <style>
+        /* 1. images 폴더 내의 폰트 파일을 정의합니다 */
+        @font-face {
+            font-family: 'FreeSerifCustom';
+            /* 보내주신 이미지의 경로를 반영했습니다 */
+            src: url('images/FreeSerifBold-rdMp.otf') format('opentype');
+            font-weight: bold;
+            font-style: normal;
+        }
+
         body {
             background-color: #0d0d0d;
             color: #e0e0e0;
             display: flex;
             flex-direction: column;
             align-items: center;
-            /* 영문은 EB Garamond, 한글은 Noto Sans(고딕)로 깔끔하게 조합 */
-            font-family: 'EB Garamond', 'FreeSerif', 'Noto Sans KR', serif;
+            /* 영문은 업로드한 폰트, 한글은 고딕체로 조합 */
+            font-family: 'FreeSerifCustom', 'Noto Sans KR', serif;
             margin: 0;
             padding: 0;
             padding-bottom: 100px;
@@ -31,8 +40,7 @@
             letter-spacing: 5px; 
             margin: 0; 
             text-transform: uppercase;
-            /* 제목은 영어이므로 클래식한 명조체가 적용됩니다 */
-            font-family: 'EB Garamond', serif;
+            font-family: 'FreeSerifCustom', serif;
         }
 
         .main-container {
@@ -57,8 +65,7 @@
             font-size: 1.3rem;
             letter-spacing: 2px;
             transition: 0.3s;
-            /* 메뉴 영어 단어들에 클래식 폰트 적용 */
-            font-family: 'EB Garamond', serif;
+            font-family: 'FreeSerifCustom', serif;
         }
 
         nav a:hover { color: #ffcc00; }
@@ -89,7 +96,6 @@
         .member-card h3 { 
             font-size: 1.4rem; 
             margin: 10px 0; 
-            /* 이름(한글)은 가독성 좋은 고딕으로 */
             font-family: 'Noto Sans KR', sans-serif;
             font-weight: 700;
             color: #fff;
@@ -99,11 +105,10 @@
             color: #888; 
             font-size: 1.1rem; 
             margin: 0; 
-            /* 포지션(Vocal, Bass 등)은 영어 명조체로 */
-            font-family: 'EB Garamond', serif;
-            font-style: italic; /* 직책을 이탤릭으로 하면 더 멋집니다 */
+            font-family: 'FreeSerifCustom', serif;
         }
 
+        /* 📱 모바일 설정: 폰트 사이즈 및 레이아웃 최적화 */
         @media (max-width: 768px) {
             header { margin-top: 40px; }
             h1 { font-size: 2.5rem; }
@@ -148,19 +153,19 @@
         <div class="member-content">
             <div class="member-grid">
                 <div class="member-card">
-                    <img src="https://github.com/aalsdbstlr-oss/aalsdbstlr-oss.github.io/blob/main/images/vocal.jpg?raw=true" alt="Vocal">
+                    <img src="images/vocal.jpg" alt="Vocal">
                     <h3>유지영</h3><p>Vocal</p>
                 </div>
                 <div class="member-card">
-                    <img src="https://github.com/aalsdbstlr-oss/aalsdbstlr-oss.github.io/blob/main/images/bass.jpg?raw=true" alt="Bass">
-                    <h3>최명호</h3><p>BASS</p>
+                    <img src="images/bass.jpg" alt="Bass">
+                    <h3>최명호</h3><p>Bass</p>
                 </div>
                 <div class="member-card">
-                    <img src="https://github.com/aalsdbstlr-oss/aalsdbstlr-oss.github.io/blob/main/images/drum2.jpg?raw=true" alt="Drum">
+                    <img src="images/drum2.jpg" alt="Drum">
                     <h3>민윤식</h3><p>Drum</p>
                 </div>
                 <div class="member-card">
-                    <img src="https://github.com/aalsdbstlr-oss/aalsdbstlr-oss.github.io/blob/main/images/guitar.jpg?raw=true" alt="Guitar">
+                    <img src="images/guitar.jpg" alt="Guitar">
                     <h3>김도혁</h3><p>Guitar</p>
                 </div>
             </div>
