@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BEIRUT TAXI - PLAY</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #0d0d0d;
+            color: #e0e0e0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: 'FreeSerif', serif;
+            margin: 0;
+            padding: 0;
+            padding-bottom: 100px;
+        }
+
+        header { margin-top: 60px; text-align: center; }
+        
+        /* PLAY 타이틀 */
+        h1.page-title { 
+            font-size: 3.5rem; 
+            color: #ffcc00; 
+            letter-spacing: 10px; 
+            margin: 0; 
+            text-transform: uppercase;
+        }
+
+        .main-container {
+            display: flex;
+            width: 90%;
+            max-width: 1200px;
+            margin-top: 50px;
+            gap: 40px;
+        }
+
+        /* 왼쪽 메뉴 (기존 레이아웃 유지) */
+        nav {
+            display: flex;
+            flex-direction: column;
+            min-width: 150px;
+        }
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            margin-bottom: 25px;
+            font-size: 1.3rem;
+            letter-spacing: 2px;
+            transition: 0.3s;
+        }
+        nav a:hover { color: #ffcc00; }
+
+        /* 오른쪽 컨텐츠 영역 */
+        .play-content { flex-grow: 1; width: 100%; }
+
+        /* 1단계: 앨범 선택 버튼 */
+        .album-selection { display: flex; gap: 20px; margin-bottom: 40px; }
+        .album-btn {
+            padding: 15px 30px;
+            background: #1a1a1a;
+            border: 1px solid #333;
+            color: #fff;
+            cursor: pointer;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            transition: 0.3s;
+        }
+        .album-btn:hover, .album-btn.active { background: #ffcc00; color: #000; border-color: #ffcc00; }
+
+        /* 2단계: 곡 리스트 (초기에는 숨김) */
+        .song-list { 
+            display: none; 
+            gap: 15px; 
+            flex-wrap: wrap; 
+            margin-bottom: 50px; 
+            border-top: 1px solid #222; 
+            padding-top: 20px; 
+        }
+        .song-btn {
+            padding: 8px 20px;
+            background: transparent;
+            border: 1px solid #555;
+            color: #ccc;
+            cursor: pointer;
+            border-radius: 20px;
+            transition: 0.3s;
+        }
+        .song-btn:hover, .song-btn.active { border-color: #ffcc00; color: #ffcc00; }
+
+        /* 3단계: 비디오 및 가사 영역 (초기에는 숨김) */
+        #display-area { display: none; width: 100%; max-width: 800px; }
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 비율 */
+            height: 0;
+            margin-bottom: 30px;
+        }
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* 가사 스타일 */
+        .lyrics-box {
+            font-family: 'Noto Sans KR', sans-serif;
+            line-height: 1.8;
+            color: #aaa;
+            white-space: pre-wrap; /* 줄바꿈 유지 */
+            text-align: center;
+            font-size: 1.1rem;
+            background: #111;
+            padding: 40px;
+            border-radius: 10px;
+        }
+
+        /* 모바일 최적화 */
+        @media (max-width: 768px) {
+            .main-container { flex-direction: column; align-items: center; }
+            nav { flex-direction: row; gap: 20px; margin-bottom: 30px; }
+            .album-selection { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1 class="page-title">PLAY</h1>
+    </header>
+
+    <div class="main-container">
+        <nav>
+            <a href="index.html">BRTX</a>
+            <a href="members.html">MEMBERS</a>
+            <a href="https://www.instagram.com/brtx_band/" target="_blank">CONTACT</a>
+        </nav>
+
+        <div class="play-content">
+            <div class="album-selection">
+                <button class="album-btn" onclick="showSongs('album1')">ALBUM 1</button>
+                <button class="album-btn" onclick="showSongs('album2')">ALBUM 2</button>
+            </div>
+
+            <div id="album1-songs" class="song-list">
+                <button class="song-btn" onclick="showPlayer('v3W...', '가사 내용 1...')">Song 1</button>
+                <button class="song-btn" onclick="showPlayer('v3W...', '가사 내용 2...')">Song 2</button>
+            </div>
+
+            <div id="album2-songs" class="song-list">
+                <button class="song-btn" onclick="showPlayer('v3W...', '앨범2 가사...')">Song A</button>
+            </div>
+
+            <div id="display-area">
+                <div class="video-wrapper">
+                    <iframe id="youtube-video" src="" allowfullscreen></iframe>
+                </div>
+                <div class="lyrics-box" id="lyrics-text">
+                    노래를 선택하면 가사가 여기에 표시됩니다.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showSongs(albumId) {
+            // 모든 곡 리스트 숨기기
+            document.querySelectorAll('.song-list').forEach(el => el.style.display = 'none');
+            // 선택한 앨범의 곡 리스트만 보이기
+            document.getElementById(albumId + '-songs').style.display = 'flex';
+            // 표시 구역 초기화
+            document.getElementById('display-area').style.display = 'none';
+        }
+
+        function showPlayer(videoId, lyrics) {
+            document.getElementById('display-area').style.display = 'block';
+            // 유튜브 URL 업데이트 (유튜브 영상 ID만 갈아끼우기)
+            document.getElementById('youtube-video').src = "https://www.youtube.com/embed/" + videoId;
+            // 가사 업데이트
+            document.getElementById('lyrics-text').innerText = lyrics;
+            
+            // 페이지 아래로 자동 스크롤
+            window.scrollTo({ top: document.getElementById('display-area').offsetTop - 50, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
