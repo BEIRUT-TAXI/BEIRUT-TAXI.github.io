@@ -19,8 +19,6 @@
         }
 
         header { margin-top: 60px; text-align: center; }
-        
-        /* PLAY 타이틀 */
         h1.page-title { 
             font-size: 3.5rem; 
             color: #ffcc00; 
@@ -37,12 +35,8 @@
             gap: 40px;
         }
 
-        /* 왼쪽 메뉴 (기존 레이아웃 유지) */
-        nav {
-            display: flex;
-            flex-direction: column;
-            min-width: 150px;
-        }
+        /* 메뉴 */
+        nav { display: flex; flex-direction: column; min-width: 150px; }
         nav a {
             color: #ffffff;
             text-decoration: none;
@@ -53,78 +47,97 @@
         }
         nav a:hover { color: #ffcc00; }
 
-        /* 오른쪽 컨텐츠 영역 */
         .play-content { flex-grow: 1; width: 100%; }
 
-        /* 1단계: 앨범 선택 버튼 */
-        .album-selection { display: flex; gap: 20px; margin-bottom: 40px; }
-        .album-btn {
-            padding: 15px 30px;
+        /* 앨범 커버 그리드 */
+        .album-selection { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); 
+            gap: 20px; 
+            margin-bottom: 50px; 
+        }
+
+        .album-card {
             background: #1a1a1a;
-            border: 1px solid #333;
-            color: #fff;
             cursor: pointer;
-            font-size: 1.2rem;
-            letter-spacing: 2px;
+            border: 2px solid transparent;
+            transition: 0.3s;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .album-card img {
+            width: 100%;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+            display: block;
+            filter: grayscale(30%);
             transition: 0.3s;
         }
-        .album-btn:hover, .album-btn.active { background: #ffcc00; color: #000; border-color: #ffcc00; }
 
-        /* 2단계: 곡 리스트 (초기에는 숨김) */
+        .album-card p {
+            margin: 10px 0;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            color: #bbb;
+        }
+
+        .album-card:hover { border-color: #ffcc00; }
+        .album-card:hover img { filter: grayscale(0%); transform: scale(1.05); }
+        .album-card.active { border-color: #ffcc00; background: #222; }
+
+        /* 곡 리스트 */
         .song-list { 
             display: none; 
-            gap: 15px; 
+            gap: 10px; 
             flex-wrap: wrap; 
-            margin-bottom: 50px; 
-            border-top: 1px solid #222; 
-            padding-top: 20px; 
+            margin-bottom: 40px; 
+            padding: 20px;
+            background: #111;
+            border-radius: 5px;
         }
+
         .song-btn {
-            padding: 8px 20px;
+            padding: 10px 20px;
             background: transparent;
-            border: 1px solid #555;
-            color: #ccc;
+            border: 1px solid #444;
+            color: #aaa;
             cursor: pointer;
-            border-radius: 20px;
+            font-family: 'Noto Sans KR', sans-serif;
             transition: 0.3s;
         }
-        .song-btn:hover, .song-btn.active { border-color: #ffcc00; color: #ffcc00; }
 
-        /* 3단계: 비디오 및 가사 영역 (초기에는 숨김) */
-        #display-area { display: none; width: 100%; max-width: 800px; }
+        .song-btn:hover { border-color: #ffcc00; color: #ffcc00; }
+
+        /* 플레이어 및 가사 */
+        #display-area { display: none; width: 100%; }
         .video-wrapper {
             position: relative;
-            padding-bottom: 56.25%; /* 16:9 비율 */
+            padding-bottom: 56.25%;
             height: 0;
             margin-bottom: 30px;
         }
         .video-wrapper iframe {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0; width: 100%; height: 100%;
             border: none;
         }
 
-        /* 가사 스타일 */
         .lyrics-box {
             font-family: 'Noto Sans KR', sans-serif;
-            line-height: 1.8;
-            color: #aaa;
-            white-space: pre-wrap; /* 줄바꿈 유지 */
+            line-height: 2;
+            color: #ccc;
+            white-space: pre-wrap;
             text-align: center;
-            font-size: 1.1rem;
-            background: #111;
-            padding: 40px;
-            border-radius: 10px;
+            background: #161616;
+            padding: 50px 20px;
+            font-size: 1rem;
         }
 
-        /* 모바일 최적화 */
         @media (max-width: 768px) {
-            .main-container { flex-direction: column; align-items: center; }
-            nav { flex-direction: row; gap: 20px; margin-bottom: 30px; }
-            .album-selection { justify-content: center; }
+            .main-container { flex-direction: column; }
+            nav { flex-direction: row; justify-content: center; gap: 20px; margin-bottom: 30px; }
+            .album-selection { grid-template-columns: repeat(2, 1fr); }
         }
     </style>
 </head>
@@ -136,56 +149,61 @@
 
     <div class="main-container">
         <nav>
-            <a href="members.html">BRTX</a>
-            <a href="#">PLAY</a>
+            <a href="index.html">BRTX</a>
+            <a href="members.html">MEMBERS</a>
             <a href="https://www.instagram.com/brtx_band/" target="_blank">CONTACT</a>
         </nav>
 
         <div class="play-content">
             <div class="album-selection">
-                <button class="album-btn" onclick="showSongs('album1')">ALBUM 1</button>
-                <button class="album-btn" onclick="showSongs('album2')">ALBUM 2</button>
+                <div class="album-card" onclick="showSongs('album1', this)">
+                    <img src="앨범1_이미지_주소.jpg" alt="Album 1">
+                    <p>1st Single</p>
+                </div>
+                <div class="album-card" onclick="showSongs('album2', this)">
+                    <img src="앨범2_이미지_주소.jpg" alt="Album 2">
+                    <p>EP Album</p>
+                </div>
             </div>
 
             <div id="album1-songs" class="song-list">
-                <button class="song-btn" onclick="showPlayer('v3W...', '가사 내용 1...')">Song 1</button>
-                <button class="song-btn" onclick="showPlayer('v3W...', '가사 내용 2...')">Song 2</button>
+                <button class="song-btn" onclick="showPlayer('유튜브ID1', `가사 1줄\n가사 2줄`)">곡 제목 1</button>
+                <button class="song-btn" onclick="showPlayer('유튜브ID2', `가사 내용...`)">곡 제목 2</button>
             </div>
 
             <div id="album2-songs" class="song-list">
-                <button class="song-btn" onclick="showPlayer('v3W...', '앨범2 가사...')">Song A</button>
+                <button class="song-btn" onclick="showPlayer('유튜브ID3', `가사 내용...`)">곡 제목 A</button>
             </div>
 
             <div id="display-area">
                 <div class="video-wrapper">
                     <iframe id="youtube-video" src="" allowfullscreen></iframe>
                 </div>
-                <div class="lyrics-box" id="lyrics-text">
-                    노래를 선택하면 가사가 여기에 표시됩니다.
-                </div>
+                <div class="lyrics-box" id="lyrics-text"></div>
             </div>
         </div>
     </div>
 
     <script>
-        function showSongs(albumId) {
-            // 모든 곡 리스트 숨기기
+        function showSongs(albumId, element) {
+            // 모든 곡 리스트 숨기기 및 선택 효과 제거
             document.querySelectorAll('.song-list').forEach(el => el.style.display = 'none');
-            // 선택한 앨범의 곡 리스트만 보이기
+            document.querySelectorAll('.album-card').forEach(el => el.classList.remove('active'));
+            
+            // 선택한 앨범 활성화
             document.getElementById(albumId + '-songs').style.display = 'flex';
-            // 표시 구역 초기화
+            element.classList.add('active');
+            
+            // 영상 구역 초기화
             document.getElementById('display-area').style.display = 'none';
         }
 
         function showPlayer(videoId, lyrics) {
             document.getElementById('display-area').style.display = 'block';
-            // 유튜브 URL 업데이트 (유튜브 영상 ID만 갈아끼우기)
-            document.getElementById('youtube-video').src = "https://www.youtube.com/embed/" + videoId;
-            // 가사 업데이트
+            document.getElementById('youtube-video').src = "https://www.youtube.com/embed/" + videoId + "?autoplay=1";
             document.getElementById('lyrics-text').innerText = lyrics;
             
-            // 페이지 아래로 자동 스크롤
-            window.scrollTo({ top: document.getElementById('display-area').offsetTop - 50, behavior: 'smooth' });
+            window.scrollTo({ top: document.getElementById('display-area').offsetTop - 20, behavior: 'smooth' });
         }
     </script>
 </body>
