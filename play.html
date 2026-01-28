@@ -12,7 +12,6 @@
             font-weight: bold; font-style: normal; font-display: swap;
         }
         body { 
-            /* 통일된 미드나잇 브라운 배경 */
             background-color: #2b251f; 
             color: #f2e9d9; 
             font-family: 'FreeSerifCustom', 'Noto Sans KR', serif; 
@@ -36,7 +35,19 @@
         nav a:hover { opacity: 1; color: #ffcc00; }
 
         .play-content { flex-grow: 1; width: 100%; overflow: hidden; }
-        .album-grid { display: flex; gap: 20px; overflow-x: auto; padding-bottom: 30px; cursor: grab; scroll-behavior: smooth; -ms-overflow-style: none; scrollbar-width: none; }
+        
+        /* [수정] padding-top을 추가하여 hover 시 이미지가 위로 올라가도 잘리지 않게 함 */
+        .album-grid { 
+            display: flex; 
+            gap: 20px; 
+            overflow-x: auto; 
+            padding-top: 15px; 
+            padding-bottom: 30px; 
+            cursor: grab; 
+            scroll-behavior: smooth; 
+            -ms-overflow-style: none; 
+            scrollbar-width: none; 
+        }
         .album-grid::-webkit-scrollbar { display: none; }
 
         .album-card { width: calc((100% - 60px) / 4); min-width: calc((100% - 60px) / 4); flex-shrink: 0; cursor: pointer; box-sizing: border-box; }
@@ -46,17 +57,20 @@
             object-fit: cover; 
             display: block; 
             margin-bottom: 15px; 
-            /* 배경보다 약간 밝은 테두리로 구분감 부여 */
             border: 1px solid rgba(255, 255, 255, 0.1); 
-            transition: 0.3s; 
+            transition: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); 
             box-shadow: 0 10px 20px rgba(0,0,0,0.3);
         }
-        .album-card:hover img { border-color: #ffcc00; transform: translateY(-5px); }
+        
+        /* 마우스 오버 시 효과 */
+        .album-card:hover img { 
+            border-color: #ffcc00; 
+            transform: translateY(-8px); 
+            box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+        }
         
         .album-info { font-family: 'Noto Sans KR', sans-serif; text-align: left; }
         .album-info .title { font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: 4px; }
-        
-        /* 타입과 날짜 스타일 조정 */
         .album-info .type, 
         .album-info .date { font-size: 0.85rem; color: #bcaaa4; font-weight: 300; margin-top: 2px; }
 
@@ -130,7 +144,6 @@
 
     <script src="data/lyrics.js"></script>
     <script>
-        // 기존 스크립트 동일 유지
         function handleAlbumClick(albumId) {
             if (typeof trackData === 'undefined') return;
             const tracks = trackData[albumId];
