@@ -38,31 +38,37 @@
 
         .history-content { flex-grow: 1; min-width: 0; }
 
+        /* 섹션 공통 */
         .history-section { 
-            margin-bottom: 150px; opacity: 0; transform: translateY(30px); 
-            transition: all 0.8s ease-out; 
+            margin-bottom: 180px; opacity: 0; transform: translateY(30px); 
+            transition: all 0.8s ease-out; position: relative;
         }
         .history-section.visible { opacity: 1; transform: translateY(0); }
 
-        /* 좌우 배치 스타일 추가 */
-        .side-by-side { display: flex; gap: 50px; align-items: center; }
-        .side-by-side .text-group { flex: 1; margin-bottom: 0; }
-        .side-by-side .photo-grid { flex: 2; margin-top: 0; }
+        /* 배치 스타일 */
+        .top-left { display: flex; gap: 40px; align-items: flex-start; }
+        .top-left .text-group { flex: 1; text-align: left; }
+        .top-left .photo-grid { flex: 2; }
 
-        .text-group h2 { font-family: 'FreeSerifCustom', serif; font-size: 2.8rem; color: #ffcc00; margin-bottom: 20px; letter-spacing: 2px; line-height: 1.2; }
-        .text-group p { font-family: 'Noto Sans KR', sans-serif; font-size: 1.2rem; line-height: 1.8; color: #bcaaa4; max-width: 650px; font-weight: 300; }
+        .top-right { display: flex; flex-direction: row-reverse; gap: 40px; align-items: flex-start; }
+        .top-right .text-group { flex: 1; text-align: right; }
+        .top-right .photo-grid { flex: 2; }
 
-        /* 필름 스타일 사진 공통 */
-        .photo-grid { display: grid; gap: 25px; margin-top: 20px; align-items: start; }
-        
+        .top-center { display: flex; flex-direction: column; align-items: center; }
+        .top-center .text-group { text-align: center; margin-bottom: 40px; }
+
+        /* 텍스트 스타일 */
+        .text-group h2 { font-family: 'FreeSerifCustom', serif; font-size: 2.8rem; color: #ffcc00; margin-bottom: 20px; letter-spacing: 2px; line-height: 1.1; }
+        .text-group p { font-family: 'Noto Sans KR', sans-serif; font-size: 1.15rem; line-height: 1.8; color: #bcaaa4; font-weight: 300; margin: 0; }
+
+        /* 필름 사진 스타일 */
+        .photo-grid { display: grid; gap: 20px; align-items: start; }
         .photo-grid img, .single-photo img, .grid-2-special img { 
-            width: 100%; height: auto; max-width: 100%;
-            object-fit: contain; background-color: #fff; 
+            width: 100%; height: auto; background-color: #fff; 
             padding: 10px 10px 30px 10px; box-sizing: border-box;
             border: 1px solid #ddd; box-shadow: 8px 8px 20px rgba(0,0,0,0.5);
             transform: rotate(-1.5deg); transition: transform 0.3s ease;
         }
-
         .photo-grid img:nth-child(even) { transform: rotate(2deg); }
         .photo-grid img:hover { transform: rotate(0deg) scale(1.05); z-index: 10; }
 
@@ -70,9 +76,6 @@
         .grid-3x3 { grid-template-columns: repeat(3, 1fr); }
         .grid-4 { grid-template-columns: repeat(3, 1fr); }
 
-        .center-section { text-align: center; }
-        .center-section .text-group p { margin-left: auto; margin-right: auto; }
-        
         .grid-2-special { display: flex; flex-direction: column; align-items: center; gap: 30px; }
         .grid-2-special img.small { width: 40%; max-width: 300px; }
         .grid-2-special img.large { width: 95%; max-width: 1100px; }
@@ -83,14 +86,15 @@
         .spacer { font-family: 'FreeSerifCustom', serif; height: 120px; display: flex; align-items: center; justify-content: center; font-style: italic; opacity: 0.5; font-size: 1.5rem; color: #ffcc00; }
 
         @media (max-width: 1024px) {
-            .side-by-side { flex-direction: column; gap: 30px; }
+            .top-left, .top-right { flex-direction: column; align-items: center; gap: 30px; }
+            .top-left .text-group, .top-right .text-group { text-align: center; }
             .text-group h2 { font-size: 2.2rem; }
         }
 
         @media (max-width: 768px) {
             .main-container { flex-direction: column; }
             nav { flex-direction: row; flex-wrap: wrap; justify-content: center; position: relative; top: 0; margin-bottom: 50px; gap: 20px; }
-            .photo-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 15px; }
+            .photo-grid { grid-template-columns: repeat(2, 1fr) !important; }
             h1.page-title { font-size: 2.5rem; letter-spacing: 5px; }
         }
     </style>
@@ -108,7 +112,7 @@
         </nav>
 
         <div class="history-content">
-            <section class="history-section side-by-side">
+            <section class="history-section top-left">
                 <div class="text-group">
                     <h2>PRIMAL ERA</h2>
                     <p>유지영의 데모가 모은 그들.<br>2020년 처음으로 밴드의 형태를 갖추다.<br>Single_Surfer's High</p>
@@ -121,17 +125,17 @@
 
             <div class="spacer">───</div>
 
-            <section class="history-section">
+            <section class="history-section top-right">
                 <div class="text-group">
-                    <h2>EMPTY ERA </h2>
-                    <p>발매나 무대 기회조차 없었지만<br>다양한 작업을 이어나가며 밴드라는 결속을 잃지 않았다.<br>EP_연소</p>
+                    <h2>EMPTY ERA</h2>
+                    <p>발매나 무대 기회조차 없었지만<br>다양한 작업을 이어나가며<br>밴드라는 결속을 잃지 않았다.<br>EP_연소</p>
                 </div>
                 <div class="photo-grid grid-4">
                     <img src="images/story/02_초중기2_음악작업2.webp"> <img src="images/story/02_초중기3_녹음.webp"> <img src="images/story/02_초중기4_녹음.webp">
                 </div>
             </section>
 
-            <section class="history-section">
+            <section class="history-section top-center">
                 <div class="text-group">
                     <h2>FIRST STEP</h2>
                     <p>2022년, 현재 멤버의 결성과 첫 발매, 첫 공연을 서는 영광을 얻다.<br>FIRST STAGE_CLUB FF_220929</p>
@@ -141,7 +145,7 @@
                 </div>
             </section>
 
-            <section class="history-section">
+            <section class="history-section top-center">
                 <div class="text-group">
                     <h2>EXPANSION</h2>
                     <p>함께 의논하고 헤쳐나가며 각자의 삶과 밴드의 결속을 유지해가다.<br>EP_SEESAW</p>
@@ -153,7 +157,7 @@
                 </div>
             </section>
 
-            <section class="history-section">
+            <section class="history-section top-center">
                 <div class="text-group">
                     <h2>BRTX</h2>
                 </div>
@@ -163,7 +167,7 @@
                 </div>
             </section>
 
-            <section class="history-section">
+            <section class="history-section top-center">
                 <div class="text-group">
                     <h2>headed for</h2>
                 </div>
@@ -172,7 +176,7 @@
                 </div>
             </section>
 
-            <section class="history-section center-section">
+            <section class="history-section top-center">
                 <div class="text-group">
                     <h2>PENTAPORT</h2>
                     <p>꿈의 무대 펜타포트에 서다. <br>멤버들은 여기만 오면 다 끝날줄 알았다.</p>
@@ -183,7 +187,7 @@
                 </div>
             </section>
 
-            <section class="history-section">
+            <section class="history-section top-center">
                 <div class="text-group">
                     <h2>CURRENT</h2>
                     <p>그 이후로도 쉬지않고 이어온 활동.<br>2025년은 단독공연이 많아지기도.<br>EP_모래알</p>
@@ -193,7 +197,7 @@
                 </div>
             </section>
 
-            <section class="history-section">
+            <section class="history-section top-center">
                 <div class="text-group">
                     <h2>NEXT</h2>
                     <p>2026년 정규발매를 목표로 하고있다.</p>
@@ -201,7 +205,7 @@
                 <div class="single-photo"><img src="images/story/09_클립_해파리.webp"></div>
             </section>
 
-            <section class="history-section">
+            <section class="history-section top-center">
                 <div class="text-group">
                     <h2>TASK</h2>
                     <p>그들에게(사실은 '그'에게) 쥐어진 숙제</p>
@@ -211,12 +215,12 @@
 
             <div class="spacer">그리고...</div>
 
-            <section class="history-section">
+            <section class="history-section top-center">
                 <div class="single-photo">
                     <img src="images/지도양피지.png">
                 </div>
                 <div class="text-group">
-                    <h2 style="text-align: center;">TO BE CONTINUED</h2>
+                    <h2>TO BE CONTINUED</h2>
                 </div>
             </section>
         </div>
