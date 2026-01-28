@@ -44,52 +44,60 @@
         }
         .history-section.visible { opacity: 1; transform: translateY(0); }
 
-        /* 공통 스타일 */
+        .top-center { display: flex; flex-direction: column; align-items: center; }
         .text-group h2 { font-family: 'FreeSerifCustom', serif; font-size: 2.8rem; color: #ffcc00; margin-bottom: 20px; letter-spacing: 2px; line-height: 1.1; }
         .text-group p { font-family: 'Noto Sans KR', sans-serif; font-size: 1.15rem; line-height: 1.8; color: #bcaaa4; font-weight: 300; margin: 0; }
-        .top-center { display: flex; flex-direction: column; align-items: center; text-align: center; }
+        .top-center .text-group { text-align: center; margin-bottom: 40px; }
 
-        /* 폴라로이드 스타일 */
-        .photo-grid img, .single-photo img, .polaroid { 
+        /* 사진 기본 스타일 (폴라로이드) */
+        .photo-grid img, .single-photo img { 
             width: 100%; height: auto; background-color: #fff; 
             padding: 6px 6px 15px 6px; 
             box-sizing: border-box;
             border: 1px solid #ddd; box-shadow: 5px 5px 15px rgba(0,0,0,0.4);
             transform: rotate(-1.2deg); transition: transform 0.3s ease;
         }
-        img:hover { transform: rotate(0deg) scale(1.05); z-index: 10; }
-
-        .photo-grid { display: grid; gap: 30px; }
+        .photo-grid img:nth-child(even) { transform: rotate(1.5deg); }
+        .photo-grid { display: grid; gap: 20px; align-items: start; }
         .grid-3 { grid-template-columns: repeat(3, 1fr); }
 
-        /* BRTX + headed for 전용: 겹침 방지 그리드 */
-        .members-grid { 
-            display: grid; 
-            grid-template-columns: 1fr 1fr 1fr; 
-            gap: 40px; 
+        /* 펜타포트 섹션 특화 배정 */
+        .pentaport-grid { 
+            display: flex; 
+            flex-direction: column; 
             align-items: center; 
-            margin-top: 50px;
+            gap: 40px; 
+            width: 100%; 
         }
-        .members-grid h2 { font-size: 3.5rem; color: #ffcc00; margin: 0; }
-        .img-item { width: 100%; }
-
-        /* 펜타포트 전용 (테두리 없음) */
-        .no-border-grid { display: flex; flex-direction: column; align-items: center; gap: 40px; }
-        .no-border-grid img { 
-            width: 90%; max-width: 900px; 
-            padding: 0; background: none; border: none; box-shadow: none; transform: none; 
+        /* 로고 크기 80%로 축소 */
+        .penta-logo { 
+            width: 80% !important; 
+            max-width: 600px; 
+            height: auto; 
+            padding: 0 !important; border: none !important; background: none !important; box-shadow: none !important; transform: none !important;
         }
+        /* 무대 사진 화면 꽉 차게 */
+        .penta-stage { 
+            width: 100vw !important; 
+            position: relative;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw;
+            margin-right: -50vw;
+            padding: 0 !important; border: none !important; background: none !important; box-shadow: none !important; transform: none !important;
+        }
+        .penta-stage img { width: 100%; height: auto; display: block; }
 
-        .single-photo { display: flex; justify-content: center; }
-        .single-photo img { width: 85%; max-width: 900px; }
-
-        .spacer { height: 120px; display: flex; align-items: center; justify-content: center; opacity: 0.5; color: #ffcc00; font-size: 1.5rem; }
+        .single-photo { display: flex; justify-content: center; width: 100%; }
+        .spacer { font-family: 'FreeSerifCustom', serif; height: 120px; display: flex; align-items: center; justify-content: center; font-style: italic; opacity: 0.5; font-size: 1.5rem; color: #ffcc00; }
 
         @media (max-width: 768px) {
             .main-container { flex-direction: column; }
             nav { flex-direction: row; flex-wrap: wrap; justify-content: center; position: relative; top: 0; margin-bottom: 50px; gap: 20px; }
-            .photo-grid, .members-grid { grid-template-columns: 1fr 1fr !important; }
-            .members-grid h2 { grid-column: span 2; text-align: center; }
+            .photo-grid { grid-template-columns: repeat(2, 1fr) !important; }
+            h1.page-title { font-size: 2.3rem; }
+            /* 모바일에서도 무대사진은 꽉 차게 유지 */
+            .penta-stage { width: 100vw; margin-left: -2.5%; } /* 컨테이너 padding 고려 조정 */
         }
     </style>
 </head>
@@ -108,73 +116,14 @@
         <div class="history-content">
             <section class="history-section top-center">
                 <div class="text-group">
-                    <h2>PRIMAL ERA</h2>
-                    <p>유지영의 데모가 모은 그들.<br>2020년 처음으로 밴드의 형태를 갖추다.<br>Single_Surfer's High</p>
-                </div>
-                <div class="photo-grid grid-3" style="margin-top:40px;">
-                    <img src="images/story/01_초기1.webp"> <img src="images/story/01_초기2.webp"> <img src="images/story/01_초기3.webp">
-                    <img src="images/story/05_녹음_머쉬룸1.webp"> <img src="images/story/05_녹음_머쉬룸_2.webp">
-                </div>
-            </section>
-
-            <div class="spacer">───</div>
-
-            <section class="history-section top-center">
-                <div class="text-group">
-                    <h2>EMPTY ERA</h2>
-                    <p>발매나 무대 기회조차 없었지만<br>다양한 작업을 이어나가며 밴드라는 연결을 잃지 않았다.<br>EP_연소</p>
-                </div>
-                <div class="photo-grid grid-3" style="margin-top:40px;">
-                    <img src="images/story/02_초중기2_음악작업2.webp"> <img src="images/story/02_초중기3_녹음.webp"> <img src="images/story/02_초중기4_녹음.webp">
-                </div>
-            </section>
-
-            <section class="history-section top-center">
-                <div class="text-group">
-                    <h2>FIRST STEP</h2>
-                    <p>2022년, 현재 멤버의 결성과 첫 발매, 첫 공연을 서는 영광을 얻다.<br>FIRST STAGE_CLUB FF_220929</p>
-                </div>
-                <div class="photo-grid grid-3" style="margin-top:40px;">
-                    <img src="images/story/03_공연기1_작업실.webp"> <img src="images/story/03_발매기1_발매축하.webp"> <img src="images/story/03_공연기2_첫공연.webp">
-                </div>
-            </section>
-
-            <section class="history-section top-center">
-                <div class="text-group">
-                    <h2>EXPANSION</h2>
-                    <p>함께 의논하고 헤쳐나가며 각자의 삶과 밴드의 결속을 유지해가다.<br>EP_SEESAW</p>
-                </div>
-                <div class="photo-grid grid-3" style="margin-top:40px;">
-                    <img src="images/story/04_단체_HBC.webp"> <img src="images/story/05_녹음_톤.webp"> <img src="images/story/04_단체_무대_AOR.webp">
-                    <img src="images/story/04_단체_언플라운지.webp"> <img src="images/story/04_단체_프로필.webp"> <img src="images/story/05_녹음_인천창작소.webp">
-                    <img src="images/story/04_단체_연신.webp"> <img src="images/story/04_단체_우주파.webp"> <img src="images/story/04_단체_온에어.webp">
-                </div>
-            </section>
-
-            <section class="history-section top-center">
-                <div class="members-grid">
-                    <h2>BRTX</h2>
-                    <div class="img-item"><img src="images/story/03_공연기_개인_지영.webp" class="polaroid"></div>
-                    <div class="img-item"><img src="images/story/03_공연기_개인_명호.webp" class="polaroid"></div>
-                    
-                    <div class="img-item"><img src="images/story/03_공연기_개인_윤식.webp" class="polaroid"></div>
-                    <div class="img-item"><img src="images/story/03_공연기_개인_도혁.webp" class="polaroid"></div>
-                    <div class="img-item"><img src="images/story/04_단체_무대_AOR2.webp" class="polaroid"></div>
-                    
-                    <div class="img-item"><img src="images/story/06_타지_오방가르드.webp" class="polaroid"></div>
-                    <div class="img-item"><img src="images/story/06_타지_영주스택스.webp" class="polaroid"></div>
-                    <h2>headed<br>for</h2>
-                </div>
-            </section>
-
-            <section class="history-section top-center">
-                <div class="text-group">
                     <h2>PENTAPORT</h2>
                     <p>꿈의 무대 펜타포트에 서다. <br>멤버들은 여기만 오면 다 끝날줄 알았다.</p>
                 </div>
-                <div class="no-border-grid" style="margin-top:40px;">
-                    <img src="images/story/07_펜타포트_로고.webp">
-                    <img src="images/story/07_펜타포트_무대.webp">
+                <div class="pentaport-grid">
+                    <img src="images/story/07_펜타포트_로고.webp" class="penta-logo">
+                    <div class="penta-stage">
+                        <img src="images/story/07_펜타포트_무대.webp">
+                    </div>
                 </div>
             </section>
 
@@ -183,32 +132,14 @@
                     <h2>CURRENT</h2>
                     <p>그 이후로도 쉬지않고 이어온 활동.<br>2025년은 단독공연이 많아지기도.<br>EP_모래알</p>
                 </div>
-                <div class="photo-grid grid-3" style="margin-top:40px;">
+                <div class="photo-grid grid-3">
                     <img src="images/story/04_단체_밴드시그널.webp"> 
                     <img src="images/story/10_단공_먼프.webp"> 
                     <img src="images/story/10_단공_우주파.webp">
                 </div>
             </section>
 
-            <section class="history-section top-center">
-                <div class="text-group"><h2>NEXT</h2><p>2026년 정규발매를 목표로 하고있다.</p></div>
-                <div class="single-photo"><img src="images/story/09_클립_해파리.webp"></div>
-            </section>
-
-            <section class="history-section top-center">
-                <div class="text-group"><h2>TASK</h2><p>그들에게(사실은 '그'에게) 쥐어진 숙제</p></div>
-                <div class="single-photo"><img src="images/story/08_악플.webp"></div>
-            </section>
-
-            <div class="spacer">그리고...</div>
-
-            <section class="history-section top-center">
-                <div class="single-photo">
-                    <img src="images/지도양피지.png" style="border:none; background:none; box-shadow:none; transform:none; width:60%;">
-                </div>
-                <div class="text-group" style="margin-top:30px;"><h2>TO BE CONTINUED</h2></div>
-            </section>
-        </div>
+            </div>
     </div>
 
     <script>
