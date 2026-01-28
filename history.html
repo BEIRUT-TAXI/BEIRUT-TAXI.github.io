@@ -44,58 +44,46 @@
         }
         .history-section.visible { opacity: 1; transform: translateY(0); }
 
-        /* 공통 텍스트 스타일 */
         .text-group h2 { font-family: 'FreeSerifCustom', serif; font-size: 2.8rem; color: #ffcc00; margin-bottom: 20px; letter-spacing: 2px; line-height: 1.1; }
         .text-group p { font-family: 'Noto Sans KR', sans-serif; font-size: 1.15rem; line-height: 1.8; color: #bcaaa4; font-weight: 300; margin: 0; }
 
         .top-center { display: flex; flex-direction: column; align-items: center; text-align: center; }
 
-        /* 폴라로이드 사진 공통 스타일 */
+        /* 폴라로이드 사진 공통 스타일 & 랜덤 틸트 */
         .img-wrap img, .photo-grid img, .single-photo img { 
             width: 100%; height: auto; background-color: #fff; 
             padding: 8px 8px 24px 8px; 
             box-sizing: border-box;
             border: 1px solid #ddd; box-shadow: 8px 8px 20px rgba(0,0,0,0.4);
+            display: block;
         }
 
+        /* 랜덤 틸트 적용 */
+        .photo-grid img:nth-child(odd), .img-wrap:nth-child(odd) img { transform: rotate(-2deg); }
+        .photo-grid img:nth-child(even), .img-wrap:nth-child(even) img { transform: rotate(2.5deg); }
+        .single-photo img { transform: rotate(-1.5deg); }
+
         /* 그리드 시스템 */
-        .photo-grid { display: grid; gap: 20px; width: 100%; }
+        .photo-grid { display: grid; gap: 20px; width: 100%; max-width: 1100px; margin: 40px auto 0; }
         .grid-3 { grid-template-columns: repeat(3, 1fr); }
         .grid-3x3 { grid-template-columns: repeat(3, 1fr); }
 
-        /* PRIMAL ERA W형 배치 */
-        .primal-grid { 
-            display: grid; 
-            grid-template-columns: repeat(6, 1fr); 
-            gap: 15px; 
-            max-width: 1100px;
-            margin: 40px auto 0;
-        }
-        .pr-p1 { grid-column: span 2; transform: rotate(-3deg); }
-        .pr-p2 { grid-column: span 2; transform: rotate(4deg); margin-top: 20px; }
-        .pr-p3 { grid-column: span 2; transform: rotate(-5deg); }
-        .pr-p4 { grid-column: 2 / span 2; transform: rotate(2deg); margin-top: -10px; }
-        .pr-main { grid-column: 4 / span 2; transform: rotate(-1deg); margin-top: -15px; }
+        /* PRIMAL ERA */
+        .primal-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 15px; max-width: 1100px; margin: 40px auto 0; }
+        .pr-p1 { grid-column: span 2; } 
+        .pr-p2 { grid-column: span 2; margin-top: 20px; }
+        .pr-p3 { grid-column: span 2; }
+        .pr-p4 { grid-column: 2 / span 2; margin-top: -10px; }
+        .pr-main { grid-column: 4 / span 2; margin-top: -15px; }
 
         /* EMPTY ERA */
-        .empty-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 25px;
-            width: 80%;
-            margin: 40px auto 0;
-        }
+        .empty-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; width: 80%; margin: 40px auto 0; }
         .empty-p3 { grid-column: 1 / span 2; justify-self: center; width: 60% !important; }
 
         /* 자유형 3*3 그리드 */
         .grid-3x3-loose {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px 30px;
-            align-items: center;
-            justify-items: center;
-            max-width: 1100px;
-            margin: 100px auto;
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px 30px;
+            align-items: center; justify-items: center; max-width: 1100px; margin: 100px auto;
         }
         .logo-text { font-family: 'FreeSerifCustom', serif; font-size: 3.5rem; color: #ffcc00; }
         .pos-1 { transform: rotate(-4deg); } .pos-2 { transform: rotate(5deg); }
@@ -103,13 +91,21 @@
         .pos-5 { transform: rotate(-2deg); } .pos-6 { transform: rotate(4deg); }
         .pos-7 { transform: rotate(-3deg); }
 
-        /* 펜타포트 */
-        .penta-grid { display: flex; flex-direction: column; align-items: center; gap: 30px; width: 100%; }
-        .penta-logo { width: 180px !important; padding: 0 !important; background: none !important; border: none !important; box-shadow: none !important; }
-        .penta-stage-wrap img { width: 100% !important; max-width: 850px; padding: 0 !important; background: none !important; border: none !important; box-shadow: 0 10px 40px rgba(0,0,0,0.6) !important; }
+        /* 펜타포트 섹션 강화 */
+        .penta-grid { display: flex; flex-direction: column; align-items: center; gap: 40px; width: 100%; }
+        .penta-logo { 
+            width: 100% !important; max-width: 1100px; /* PC에서 다른 그리드 총 길이만큼 */
+            padding: 0 !important; background: none !important; border: none !important; box-shadow: none !important; transform: none !important; 
+        }
+        .penta-stage-wrap { width: 100%; display: flex; justify-content: center; }
+        .penta-stage-wrap img { 
+            width: 115% !important; max-width: 1300px; /* 약 150% 느낌으로 확대 */
+            padding: 0 !important; background: none !important; border: none !important; 
+            box-shadow: 0 15px 50px rgba(0,0,0,0.7) !important; transform: none !important; 
+        }
 
         .single-photo { display: flex; justify-content: center; width: 100%; }
-        .single-photo img { width: 85%; max-width: 800px; transform: rotate(-1deg); }
+        .single-photo img { width: 85%; max-width: 800px; }
         .spacer { font-family: 'FreeSerifCustom', serif; height: 120px; display: flex; align-items: center; justify-content: center; font-style: italic; opacity: 0.5; font-size: 1.5rem; color: #ffcc00; }
 
         @media (max-width: 768px) {
@@ -119,6 +115,10 @@
             .empty-grid { grid-template-columns: repeat(2, 1fr); width: 100%; }
             .empty-p3 { grid-column: span 2; width: 100% !important; }
             nav { flex-direction: row; justify-content: center; gap: 15px; position: relative; top: 0; margin-bottom: 40px; }
+            
+            /* 모바일 펜타포트: 가로 화면에 닿도록 */
+            .penta-logo { width: 100vw !important; max-width: none; }
+            .penta-stage-wrap img { width: 100vw !important; max-width: none; }
         }
     </style>
 </head>
@@ -207,7 +207,7 @@
                 </div>
             </section>
 
-             <section class="history-section top-center">
+            <section class="history-section top-center">
                 <div class="text-group">
                     <h2>PENTAPORT</h2>
                     <p>꿈의 무대 펜타포트에 서다. <br>멤버들은 여기만 오면 다 끝날줄 알았다.</p>
@@ -224,7 +224,9 @@
                     <p>그 이후로도 쉬지않고 이어온 활동.<br>2025년은 단독공연이 많아지기도.<br>EP_모래알</p>
                 </div>
                 <div class="photo-grid grid-3">
-                    <img src="images/story/04_단체_밴드시그널.webp"> <img src="images/story/10_단공_먼프.webp"> <img src="images/story/10_단공_우주파.webp">
+                    <img src="images/story/04_단체_밴드시그널.webp"> 
+                    <img src="images/story/10_단공_먼프.webp"> 
+                    <img src="images/story/10_단공_우주파.webp">
                 </div>
             </section>
 
@@ -256,14 +258,11 @@
     </div>
 
     <script>
-        const observerOptions = { threshold: 0.1 };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
+                if (entry.isIntersecting) entry.target.classList.add('visible');
             });
-        }, observerOptions);
+        }, { threshold: 0.1 });
 
         document.querySelectorAll('.history-section').forEach(section => {
             observer.observe(section);
