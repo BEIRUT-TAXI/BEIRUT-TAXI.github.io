@@ -10,25 +10,31 @@
             font-family: 'FreeSerifCustom';
             src: url('images/FreeSerifBold-rdMp.otf') format('opentype');
             font-weight: bold; font-style: normal;
+            font-display: swap; /* 폰트 로딩 시 깜빡임 방지 및 지연 방지 */
         }
 
         body { 
             background-color: #2b251f; color: #f2e9d9; 
-            font-family: 'FreeSerifCustom', 'Noto Sans KR', serif; 
+            /* 모바일에서도 영문에 FreeSerifCustom이 우선 적용되도록 설정 */
+            font-family: 'FreeSerifCustom', 'FreeSerif', serif, 'Noto Sans KR'; 
             margin: 0; padding-bottom: 150px; overflow-x: hidden;
         }
 
         header { margin-top: 60px; text-align: center; margin-bottom: 80px; }
         h1.page-title { 
+            font-family: 'FreeSerifCustom', serif;
             font-size: 3.5rem; color: #ffcc00; letter-spacing: 10px; 
             text-transform: uppercase; text-shadow: 3px 3px 6px rgba(0,0,0,0.3); margin: 0;
         }
 
         .main-container { display: flex; width: 95%; max-width: 1400px; margin: 0 auto; gap: 40px; }
         
-        /* 모바일 메뉴바: 잘리지 않게 wrap 설정 */
         nav { display: flex; flex-direction: column; min-width: 120px; position: sticky; top: 60px; height: fit-content; z-index: 100; }
-        nav a { color: #f2e9d9; text-decoration: none; margin-bottom: 25px; font-size: 1.1rem; letter-spacing: 2px; transition: 0.3s; opacity: 0.7; }
+        nav a { 
+            font-family: 'FreeSerifCustom', serif;
+            color: #f2e9d9; text-decoration: none; margin-bottom: 25px; 
+            font-size: 1.1rem; letter-spacing: 2px; transition: 0.3s; opacity: 0.7; 
+        }
         nav a:hover { opacity: 1; color: #ffcc00; }
 
         .history-content { flex-grow: 1; min-width: 0; }
@@ -40,24 +46,19 @@
         .history-section.visible { opacity: 1; transform: translateY(0); }
 
         .text-group { margin-bottom: 30px; }
-        .text-group h2 { font-size: 2.2rem; color: #ffcc00; margin-bottom: 15px; letter-spacing: 2px; }
-        .text-group p { font-size: 1rem; line-height: 1.8; color: #bcaaa4; max-width: 600px; font-weight: 300; }
+        .text-group h2 { font-family: 'FreeSerifCustom', serif; font-size: 2.2rem; color: #ffcc00; margin-bottom: 15px; letter-spacing: 2px; }
+        .text-group p { font-family: 'Noto Sans KR', sans-serif; font-size: 1rem; line-height: 1.8; color: #bcaaa4; max-width: 600px; font-weight: 300; }
 
         /* 사진 그리드 공통 */
         .photo-grid { display: grid; gap: 15px; margin-top: 20px; }
         .photo-grid img { width: 100%; aspect-ratio: 16/10; object-fit: cover; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
 
-        /* 1. PRIMAL ERA: 겹침 문제 해결 (3열 유지하되 4,5번째 사진도 정렬) */
         .grid-5 { grid-template-columns: repeat(3, 1fr); }
         .grid-5 img:nth-child(n+4) { grid-column: auto; width: 100%; transform: none; }
-
-        /* 2. EXPANSION: 3x3 정직사각형 배치 (5번 사진 중앙) */
         .grid-3x3 { grid-template-columns: repeat(3, 1fr); }
-        .grid-3x3 img { aspect-ratio: 1/1; } /* 3x3은 정사각 형태가 가장 깔끔함 */
-
+        .grid-3x3 img { aspect-ratio: 1/1; }
         .grid-4 { grid-template-columns: repeat(4, 1fr); }
 
-        /* 3. PENTAPORT: 텍스트 및 사진 가운데 정렬 */
         .center-section { text-align: center; }
         .center-section .text-group p { margin-left: auto; margin-right: auto; }
         .grid-2-special { display: flex; flex-direction: column; align-items: center; gap: 20px; }
@@ -65,17 +66,29 @@
         .grid-2-special img.large { width: 100%; max-width: 1000px; }
 
         .single-photo img { width: 100%; max-height: 600px; object-fit: cover; }
-        .spacer { height: 100px; display: flex; align-items: center; justify-content: center; font-style: italic; opacity: 0.5; font-size: 1.2rem; }
+        .spacer { font-family: 'FreeSerifCustom', serif; height: 100px; display: flex; align-items: center; justify-content: center; font-style: italic; opacity: 0.5; font-size: 1.2rem; }
 
+        /* 모바일 대응 수정 */
         @media (max-width: 768px) {
             .main-container { flex-direction: column; }
             nav { 
-                flex-direction: row; flex-wrap: wrap; justify-content: center; 
-                position: relative; top: 0; margin-bottom: 50px; gap: 15px; 
+                flex-direction: row; 
+                flex-wrap: wrap; 
+                justify-content: center; 
+                position: relative; 
+                top: 0; 
+                margin-bottom: 50px; 
+                gap: 20px; /* 메뉴 항목 간의 간격을 벌림 */
+                padding: 10px 0;
             }
-            nav a { margin-bottom: 0; font-size: 0.9rem; }
+            nav a { 
+                margin-bottom: 0; 
+                font-size: 1rem; 
+                padding: 5px 10px; /* 터치 영역 및 시각적 간격 확보 */
+            }
             .photo-grid { grid-template-columns: repeat(2, 1fr) !important; }
             .photo-grid img { aspect-ratio: 1/1 !important; }
+            h1.page-title { font-size: 2.5rem; letter-spacing: 5px; }
         }
     </style>
 </head>
