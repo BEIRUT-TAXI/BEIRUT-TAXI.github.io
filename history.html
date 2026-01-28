@@ -48,8 +48,6 @@
         .text-group h2 { font-family: 'FreeSerifCustom', serif; font-size: 2.8rem; color: #ffcc00; margin-bottom: 20px; letter-spacing: 2px; line-height: 1.1; }
         .text-group p { font-family: 'Noto Sans KR', sans-serif; font-size: 1.15rem; line-height: 1.8; color: #bcaaa4; font-weight: 300; margin: 0; }
 
-        .top-left { display: flex; gap: 40px; align-items: flex-start; }
-        .top-right { display: flex; flex-direction: row-reverse; gap: 40px; align-items: flex-start; }
         .top-center { display: flex; flex-direction: column; align-items: center; text-align: center; }
 
         /* 폴라로이드 사진 공통 스타일 */
@@ -60,12 +58,42 @@
             border: 1px solid #ddd; box-shadow: 8px 8px 20px rgba(0,0,0,0.4);
         }
 
-        /* 그리드 시스템 */
-        .photo-grid { display: grid; gap: 20px; width: 100%; }
-        .grid-3 { grid-template-columns: repeat(3, 1fr); }
-        .grid-3x3 { grid-template-columns: repeat(3, 1fr); }
+        /* 1번 수정: PRIMAL ERA (W형 배치 강화) */
+        .primal-grid { 
+            display: grid; 
+            grid-template-columns: repeat(6, 1fr); 
+            gap: 15px; 
+            max-width: 1100px;
+            margin: 40px auto 0;
+        }
+        .pr-p1 { grid-column: span 2; transform: rotate(-3deg); }
+        .pr-p2 { grid-column: span 2; transform: rotate(4deg); margin-top: 20px; }
+        .pr-p3 { grid-column: span 2; transform: rotate(-5deg); }
+        .pr-p4 { grid-column: 2 / span 2; transform: rotate(2deg); margin-top: -10px; }
+        .pr-main { grid-column: 4 / span 2; transform: rotate(-1deg); margin-top: -15px; }
 
-        /* 3*3 자유형 그리드 (수정된 핵심 레이아웃) */
+        /* 2번 수정: EMPTY ERA (1-2 / 3 배치) */
+        .empty-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            width: 80%;
+            margin: 40px auto 0;
+        }
+        .empty-p3 { grid-column: 1 / span 2; justify-self: center; width: 60% !important; }
+
+        /* 3번 수정: EXPANSION (2-3 스퀘어 배치) */
+        .expansion-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 20px;
+            max-width: 1100px;
+            margin: 40px auto 0;
+        }
+        .ex-row1 { grid-column: span 3; width: 90%; justify-self: center; } /* 상단 2개 */
+        .ex-row2 { grid-column: span 2; width: 100%; } /* 하단 3개 */
+
+        /* 자유형 3*3 그리드 */
         .grid-3x3-loose {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -76,48 +104,30 @@
             margin: 100px auto;
         }
         .logo-text { font-family: 'FreeSerifCustom', serif; font-size: 3.5rem; color: #ffcc00; }
+        .pos-1 { transform: rotate(-4deg); } .pos-2 { transform: rotate(5deg); }
+        .pos-3 { transform: rotate(-6deg); } .pos-4 { transform: rotate(3deg); }
+        .pos-5 { transform: rotate(-2deg); } .pos-6 { transform: rotate(4deg); }
+        .pos-7 { transform: rotate(-3deg); }
 
-        /* 개별 사진 위치/회전값 (유연한 배치용) */
-        .pos-1 { transform: rotate(-4deg); margin-top: 5px; }
-        .pos-2 { transform: rotate(5deg); margin-bottom: 10px; }
-        .pos-3 { transform: rotate(-6deg); margin-right: 10px; }
-        .pos-4 { transform: rotate(3deg); margin-left: 15px; }
-        .pos-5 { transform: rotate(-2deg); margin-top: -10px; }
-        .pos-6 { transform: rotate(4deg); }
-        .pos-7 { transform: rotate(-3deg); margin-bottom: 20px; }
-
-        /* Primal Era용 커스텀 레이아웃 */
-        .primal-grid { 
-            display: grid; 
-            grid-template-columns: repeat(4, 1fr); 
-            gap: 20px; 
-            max-width: 1100px;
-            margin: 40px auto 0;
-        }
-        .pr-p1 { grid-column: 2; transform: rotate(-3deg); }
-        .pr-p2 { grid-column: 3; transform: rotate(4deg); }
-        .pr-p3 { grid-column: 1; transform: rotate(-5deg); margin-top: -20px; }
-        .pr-p4 { grid-column: 2; transform: rotate(2deg); }
-        .pr-main { grid-column: 3 / span 2; transform: rotate(-1deg); }
-
-        /* 펜타포트 스타일 */
+        /* 펜타포트 */
         .penta-grid { display: flex; flex-direction: column; align-items: center; gap: 30px; width: 100%; }
-        .penta-logo { width: 180px !important; padding: 0 !important; background: none !important; border: none !important; box-shadow: none !important; transform: none !important; }
-        .penta-stage-wrap { width: 100%; display: flex; justify-content: center; }
-        .penta-stage-wrap img { width: 70% !important; max-width: 850px; padding: 0 !important; background: none !important; border: none !important; transform: none !important; box-shadow: 0 10px 40px rgba(0,0,0,0.6) !important; }
+        .penta-logo { width: 180px !important; padding: 0 !important; background: none !important; border: none !important; box-shadow: none !important; }
+        .penta-stage-wrap img { width: 70% !important; max-width: 850px; padding: 0 !important; background: none !important; border: none !important; box-shadow: 0 10px 40px rgba(0,0,0,0.6) !important; }
 
         .single-photo { display: flex; justify-content: center; width: 100%; }
         .single-photo img { width: 85%; max-width: 800px; transform: rotate(-1deg); }
-
         .spacer { font-family: 'FreeSerifCustom', serif; height: 120px; display: flex; align-items: center; justify-content: center; font-style: italic; opacity: 0.5; font-size: 1.5rem; color: #ffcc00; }
 
+        /* 반응형 설정 */
         @media (max-width: 768px) {
             .main-container { flex-direction: column; }
-            .grid-3x3-loose, .primal-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
-            .pr-main { grid-column: 1 / span 2; }
-            .logo-text { font-size: 2.2rem; }
+            .primal-grid { grid-template-columns: repeat(2, 1fr); }
+            .pr-p1, .pr-p2, .pr-p3, .pr-p4, .pr-main { grid-column: span 1; margin: 0; }
+            .empty-grid, .expansion-grid { grid-template-columns: repeat(2, 1fr); width: 100%; }
+            .ex-row1, .ex-row2 { grid-column: span 1; width: 100%; }
+            .empty-p3 { grid-column: span 2; width: 100% !important; }
+            .grid-3x3-loose { grid-template-columns: repeat(2, 1fr); }
             nav { flex-direction: row; justify-content: center; gap: 15px; position: relative; top: 0; margin-bottom: 40px; }
-            .grid-3, .grid-3x3 { grid-template-columns: repeat(2, 1fr); }
         }
     </style>
 </head>
@@ -150,13 +160,15 @@
 
             <div class="spacer">───</div>
 
-            <section class="history-section top-right">
+            <section class="history-section top-center">
                 <div class="text-group">
                     <h2>EMPTY ERA</h2>
-                    <p>발매나 무대 기회조차 없었지만<br>다양한 작업을 이어나가며<br>밴드라는 연결을 잃지 않았다.<br>EP_연소</p>
+                    <p>발매나 무대 기회조차 없었지만<br>다양한 작업을 이어나가며 밴드라는 연결을 잃지 않았다.<br>EP_연소</p>
                 </div>
-                <div class="photo-grid grid-3">
-                    <img src="images/story/02_초중기2_음악작업2.webp"> <img src="images/story/02_초중기3_녹음.webp"> <img src="images/story/02_초중기4_녹음.webp">
+                <div class="empty-grid">
+                    <div class="img-wrap"><img src="images/story/02_초중기2_음악작업2.webp"></div>
+                    <div class="img-wrap"><img src="images/story/02_초중기3_녹음.webp"></div>
+                    <div class="img-wrap empty-p3"><img src="images/story/02_초중기4_녹음.webp"></div>
                 </div>
             </section>
 
@@ -175,10 +187,12 @@
                     <h2>EXPANSION</h2>
                     <p>함께 의논하고 헤쳐나가며 각자의 삶과 밴드의 결속을 유지해가다.<br>EP_SEESAW</p>
                 </div>
-                <div class="photo-grid grid-3x3">
-                    <img src="images/story/04_단체_HBC.webp"> <img src="images/story/05_녹음_톤.webp"> <img src="images/story/04_단체_무대_AOR.webp">
-                    <img src="images/story/04_단체_언플라운지.webp"> <img src="images/story/04_단체_프로필.webp"> <img src="images/story/05_녹음_인천창작소.webp">
-                    <img src="images/story/04_단체_연신.webp"> <img src="images/story/04_단체_우주파.webp"> <img src="images/story/04_단체_온에어.webp">
+                <div class="expansion-grid">
+                    <div class="img-wrap ex-row1"><img src="images/story/04_단체_HBC.webp"></div>
+                    <div class="img-wrap ex-row1"><img src="images/story/05_녹음_톤.webp"></div>
+                    <div class="img-wrap ex-row2"><img src="images/story/04_단체_무대_AOR.webp"></div>
+                    <div class="img-wrap ex-row2"><img src="images/story/04_단체_언플라운지.webp"></div>
+                    <div class="img-wrap ex-row2"><img src="images/story/04_단체_프로필.webp"></div>
                 </div>
             </section>
 
@@ -187,11 +201,9 @@
                     <div class="logo-text">BRTX</div>
                     <div class="img-wrap pos-1"><img src="images/story/03_공연기_개인_지영.webp"></div>
                     <div class="img-wrap pos-2"><img src="images/story/03_공연기_개인_명호.webp"></div>
-
                     <div class="img-wrap pos-3"><img src="images/story/03_공연기_개인_윤식.webp"></div>
                     <div class="img-wrap pos-4"><img src="images/story/03_공연기_개인_도혁.webp"></div>
                     <div class="logo-text" style="font-size: 2.2rem;">headed for</div>
-
                     <div class="img-wrap pos-5"><img src="images/story/04_단체_무대_AOR2.webp"></div>
                     <div class="img-wrap pos-6"><img src="images/story/06_타지_오방가르드.webp"></div>
                     <div class="img-wrap pos-7"><img src="images/story/06_타지_영주스택스.webp"></div>
@@ -201,7 +213,7 @@
             <section class="history-section top-center">
                 <div class="text-group">
                     <h2>PENTAPORT</h2>
-                    <p>꿈의 무대 펜타포트에 서다. <br>멤버들은 여기만 오면 다 끝날줄 알았다.</p>
+                    <p>꿈의 무대 펜타포트에 서다.</p>
                 </div>
                 <div class="penta-grid">
                     <img src="images/story/07_펜타포트_로고.webp" class="penta-logo">
@@ -212,7 +224,7 @@
             <section class="history-section top-center">
                 <div class="text-group">
                     <h2>CURRENT</h2>
-                    <p>그 이후로도 쉬지않고 이어온 활동.<br>2025년은 단독공연이 많아지기도.<br>EP_모래알</p>
+                    <p>2025년 단독공연.<br>EP_모래알</p>
                 </div>
                 <div class="photo-grid grid-3">
                     <img src="images/story/04_단체_밴드시그널.webp"> <img src="images/story/10_단공_먼프.webp"> <img src="images/story/10_단공_우주파.webp">
@@ -220,45 +232,24 @@
             </section>
 
             <section class="history-section top-center">
-                <div class="text-group">
-                    <h2>NEXT</h2>
-                    <p>2026년 정규발매를 목표로 하고있다.</p>
-                </div>
+                <div class="text-group"><h2>NEXT</h2><p>2026년 정규발매 목표.</p></div>
                 <div class="single-photo"><img src="images/story/09_클립_해파리.webp"></div>
             </section>
 
             <section class="history-section top-center">
-                <div class="text-group">
-                    <h2>TASK</h2>
-                    <p>그들에게(사실은 '그'에게) 쥐어진 숙제</p>
-                </div>
-                <div class="single-photo"><img src="images/story/08_악플.webp"></div>
-            </section>
-
-            <div class="spacer">그리고...</div>
-
-            <section class="history-section top-center">
-                <div class="single-photo">
-                    <img src="images/지도양피지.png" style="border:none; background:none; box-shadow:none; transform:none; padding:0;">
-                </div>
                 <div class="text-group"><h2>TO BE CONTINUED</h2></div>
+                <div class="single-photo"><img src="images/지도양피지.png" style="border:none; background:none; box-shadow:none;"></div>
             </section>
         </div>
     </div>
 
     <script>
-        const observerOptions = { threshold: 0.1 };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
+                if (entry.isIntersecting) entry.target.classList.add('visible');
             });
-        }, observerOptions);
-
-        document.querySelectorAll('.history-section').forEach(section => {
-            observer.observe(section);
-        });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.history-section').forEach(section => observer.observe(section));
     </script>
 </body>
 </html>
