@@ -19,16 +19,19 @@
         }
 
         header { margin-top: 60px; text-align: center; margin-bottom: 80px; }
-        h1.page-title { font-size: 3.5rem; color: #ffcc00; letter-spacing: 10px; text-transform: uppercase; margin: 0; }
+        h1.page-title { 
+            font-size: 3.5rem; color: #ffcc00; letter-spacing: 10px; 
+            text-transform: uppercase; text-shadow: 3px 3px 6px rgba(0,0,0,0.3); margin: 0;
+        }
 
         .main-container { display: flex; width: 95%; max-width: 1400px; margin: 0 auto; gap: 40px; }
         
-        /* 1. 모바일 메뉴바 개선: 잘리지 않게 줄바꿈 허용 */
-        nav { display: flex; flex-direction: column; min-width: 120px; position: sticky; top: 60px; height: fit-content; z-index: 10; }
-        nav a { color: #f2e9d9; text-decoration: none; margin-bottom: 25px; font-size: 1.1rem; letter-spacing: 2px; opacity: 0.7; transition: 0.3s; }
+        /* 모바일 메뉴바: 잘리지 않게 wrap 설정 */
+        nav { display: flex; flex-direction: column; min-width: 120px; position: sticky; top: 60px; height: fit-content; z-index: 100; }
+        nav a { color: #f2e9d9; text-decoration: none; margin-bottom: 25px; font-size: 1.1rem; letter-spacing: 2px; transition: 0.3s; opacity: 0.7; }
         nav a:hover { opacity: 1; color: #ffcc00; }
 
-        .history-content { flex-grow: 1; min-width: 0; } /* min-width: 0는 그리드 깨짐 방지 */
+        .history-content { flex-grow: 1; min-width: 0; }
 
         .history-section { 
             margin-bottom: 120px; opacity: 0; transform: translateY(30px); 
@@ -42,40 +45,37 @@
 
         /* 사진 그리드 공통 */
         .photo-grid { display: grid; gap: 15px; margin-top: 20px; }
-        .photo-grid img { width: 100%; aspect-ratio: 16/10; object-fit: cover; border: 1px solid rgba(255,255,255,0.1); }
+        .photo-grid img { width: 100%; aspect-ratio: 16/10; object-fit: cover; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
 
-        /* 2. 첫 번째 사진 그리드 (PRIMAL ERA): 겹침 문제 해결 */
-        /* 복잡한 span 대신 깔끔하게 3열로 정렬 */
+        /* 1. PRIMAL ERA: 겹침 문제 해결 (3열 유지하되 4,5번째 사진도 정렬) */
         .grid-5 { grid-template-columns: repeat(3, 1fr); }
-        .grid-5 img:nth-child(4), .grid-5 img:nth-child(5) { grid-column: auto; transform: none; width: 100%; }
+        .grid-5 img:nth-child(n+4) { grid-column: auto; width: 100%; transform: none; }
 
-        /* 3. 두 번째 사진 그리드 (EXPANSION): 3x3 정직사각형 및 5번 중앙 배치 */
-        .grid-3x3 { 
-            grid-template-columns: repeat(3, 1fr); 
-            aspect-ratio: 1/1; /* 전체를 큰 정사각형/직사각형 느낌으로 유지 */
-        }
-        .grid-3x3 img { aspect-ratio: 1/1; } /* 각 요소를 정삼각형으로 하여 3x3 정렬 */
+        /* 2. EXPANSION: 3x3 정직사각형 배치 (5번 사진 중앙) */
+        .grid-3x3 { grid-template-columns: repeat(3, 1fr); }
+        .grid-3x3 img { aspect-ratio: 1/1; } /* 3x3은 정사각 형태가 가장 깔끔함 */
 
-        /* 4. PENTAPORT 파트: 텍스트 및 사진 가운데 정렬 */
+        .grid-4 { grid-template-columns: repeat(4, 1fr); }
+
+        /* 3. PENTAPORT: 텍스트 및 사진 가운데 정렬 */
         .center-section { text-align: center; }
-        .center-section .text-group p { margin: 0 auto 30px auto; }
+        .center-section .text-group p { margin-left: auto; margin-right: auto; }
         .grid-2-special { display: flex; flex-direction: column; align-items: center; gap: 20px; }
-        .grid-2-special img.small { width: 30%; max-width: 200px; }
-        .grid-2-special img.large { width: 100%; max-width: 900px; }
+        .grid-2-special img.small { width: 30%; max-width: 250px; }
+        .grid-2-special img.large { width: 100%; max-width: 1000px; }
 
         .single-photo img { width: 100%; max-height: 600px; object-fit: cover; }
-        .spacer { height: 100px; display: flex; align-items: center; justify-content: center; opacity: 0.5; }
+        .spacer { height: 100px; display: flex; align-items: center; justify-content: center; font-style: italic; opacity: 0.5; font-size: 1.2rem; }
 
-        /* 모바일 대응 */
         @media (max-width: 768px) {
             .main-container { flex-direction: column; }
             nav { 
-                flex-direction: row; flex-wrap: wrap; /* 잘리지 않게 줄바꿈 */
-                justify-content: center; position: relative; top: 0; gap: 15px; margin-bottom: 40px; 
+                flex-direction: row; flex-wrap: wrap; justify-content: center; 
+                position: relative; top: 0; margin-bottom: 50px; gap: 15px; 
             }
             nav a { margin-bottom: 0; font-size: 0.9rem; }
-            .grid-5, .grid-3x3, .grid-4 { grid-template-columns: repeat(2, 1fr) !important; aspect-ratio: auto; }
-            .grid-3x3 img { aspect-ratio: 16/10; }
+            .photo-grid { grid-template-columns: repeat(2, 1fr) !important; }
+            .photo-grid img { aspect-ratio: 1/1 !important; }
         }
     </style>
 </head>
@@ -103,13 +103,25 @@
                 </div>
             </section>
 
+            <div class="spacer">───</div>
+
             <section class="history-section">
                 <div class="text-group">
-                    <h2>02. EMPTY ERA</h2>
-                    <p>발매나 무대 기회조차 없었지만 다양한 작업을 이어갔다.<br>EP_연소</p>
+                    <h2>02. EMPTY ERA </h2>
+                    <p>발매나 무대 기회조차 없었지만<br>다양한 작업을 이어나가며 밴드라는 결속을 잃지 않았다.<br>EP_연소</p>
                 </div>
                 <div class="photo-grid grid-4">
                     <img src="images/story/02_초중기2_음악작업2.webp"> <img src="images/story/02_초중기3_녹음.webp"> <img src="images/story/02_초중기4_녹음.webp">
+                </div>
+            </section>
+
+            <section class="history-section">
+                <div class="text-group">
+                    <h2>FIRST STEP</h2>
+                    <p>2022년, 현재 멤버의 결성과 첫 발매, 첫 공연을 서는 영광을 얻다.<br>FIRST STAGE_CLUB FF_220929</p>
+                </div>
+                <div class="photo-grid grid-4">
+                    <img src="images/story/03_공연기1_작업실.webp"> <img src="images/story/03_발매기1_발매축하.webp"> <img src="images/story/03_공연기2_첫공연.webp">
                 </div>
             </section>
 
@@ -122,6 +134,25 @@
                     <img src="images/story/04_단체_HBC.webp"> <img src="images/story/05_녹음_톤.webp"> <img src="images/story/04_단체_무대_AOR.webp">
                     <img src="images/story/04_단체_언플라운지.webp"> <img src="images/story/04_단체_프로필.webp"> <img src="images/story/05_녹음_인천창작소.webp">
                     <img src="images/story/04_단체_연신.webp"> <img src="images/story/04_단체_우주파.webp"> <img src="images/story/04_단체_온에어.webp">
+                </div>
+            </section>
+
+            <section class="history-section">
+                <div class="text-group">
+                    <h2>BRTX</h2>
+                </div>
+                <div class="photo-grid grid-4">
+                    <img src="images/story/03_공연기_개인_지영.webp"> <img src="images/story/03_공연기_개인_명호.webp">
+                    <img src="images/story/03_공연기_개인_윤식.webp"> <img src="images/story/03_공연기_개인_도혁.webp">
+                </div>
+            </section>
+
+            <section class="history-section">
+                <div class="text-group">
+                    <h2>headed for</h2>
+                </div>
+                <div class="photo-grid grid-4">
+                    <img src="images/story/04_단체_무대_AOR2.webp"> <img src="images/story/06_타지_오방가르드.webp"> <img src="images/story/06_타지_영주스택스.webp">
                 </div>
             </section>
 
@@ -138,13 +169,40 @@
 
             <section class="history-section">
                 <div class="text-group">
+                    <h2>CURRENT</h2>
+                    <p>그 이후로도 쉬지않고 이어온 활동.<br>2025년은 단독공연이 많아지기도.<br>EP_모래알</p>
+                </div>
+                <div class="photo-grid grid-4">
+                    <img src="images/story/04_단체_밴드시그널.webp"> <img src="images/story/10_단공_먼프.webp"> <img src="images/story/10_단공_우주파.webp"> <img src="images/story/10_단공_우주파.webp">
+                </div>
+            </section>
+
+            <section class="history-section">
+                <div class="text-group">
+                    <h2>NEXT</h2>
+                    <p>2026년 정규발매를 목표로 하고있다.</p>
+                </div>
+                <div class="single-photo"><img src="img.jpg"></div>
+            </section>
+
+            <section class="history-section">
+                <div class="text-group">
                     <h2>TASK</h2>
-                    <p>그들에게 쥐어진 숙제</p>
+                    <p>그들에게(사실은 '그'에게) 쥐어진 숙제</p>
                 </div>
                 <div class="single-photo"><img src="images/story/08_악플.webp"></div>
             </section>
 
-            <div class="spacer">─── TO BE CONTINUED ───</div>
+            <div class="spacer">그리고...</div>
+
+            <section class="history-section">
+                <div class="single-photo">
+                    <img src="images/지도양피지.png">
+                </div>
+                <div class="text-group">
+                    <h2 style="text-align: center;">TO BE CONTINUED</h2>
+                </div>
+            </section>
         </div>
     </div>
 
