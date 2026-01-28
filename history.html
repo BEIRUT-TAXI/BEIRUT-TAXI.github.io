@@ -207,10 +207,10 @@
                 </div>
             </section>
 
-            <section class="history-section top-center">
+             <section class="history-section top-center">
                 <div class="text-group">
                     <h2>PENTAPORT</h2>
-                    <p>꿈의 무대 펜타포트에 서다.</p>
+                    <p>꿈의 무대 펜타포트에 서다. <br>멤버들은 여기만 오면 다 끝날줄 알았다.</p>
                 </div>
                 <div class="penta-grid">
                     <img src="images/story/07_펜타포트_로고.webp" class="penta-logo">
@@ -221,7 +221,7 @@
             <section class="history-section top-center">
                 <div class="text-group">
                     <h2>CURRENT</h2>
-                    <p>2025년 단독공연.<br>EP_모래알</p>
+                    <p>그 이후로도 쉬지않고 이어온 활동.<br>2025년은 단독공연이 많아지기도.<br>EP_모래알</p>
                 </div>
                 <div class="photo-grid grid-3">
                     <img src="images/story/04_단체_밴드시그널.webp"> <img src="images/story/10_단공_먼프.webp"> <img src="images/story/10_단공_우주파.webp">
@@ -229,24 +229,45 @@
             </section>
 
             <section class="history-section top-center">
-                <div class="text-group"><h2>NEXT</h2><p>2026년 정규발매 목표.</p></div>
+                <div class="text-group">
+                    <h2>NEXT</h2>
+                    <p>2026년 정규발매를 목표로 하고있다.</p>
+                </div>
                 <div class="single-photo"><img src="images/story/09_클립_해파리.webp"></div>
             </section>
 
             <section class="history-section top-center">
+                <div class="text-group">
+                    <h2>TASK</h2>
+                    <p>그들에게(사실은 '그'에게) 쥐어진 숙제</p>
+                </div>
+                <div class="single-photo"><img src="images/story/08_악플.webp"></div>
+            </section>
+
+            <div class="spacer">그리고...</div>
+
+            <section class="history-section top-center">
+                <div class="single-photo">
+                    <img src="images/지도양피지.png" style="border:none; background:none; box-shadow:none; transform:none; padding:0;">
+                </div>
                 <div class="text-group"><h2>TO BE CONTINUED</h2></div>
-                <div class="single-photo"><img src="images/지도양피지.png" style="border:none; background:none; box-shadow:none;"></div>
             </section>
         </div>
     </div>
 
     <script>
+        const observerOptions = { threshold: 0.1 };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('visible');
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
             });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.history-section').forEach(section => observer.observe(section));
+        }, observerOptions);
+
+        document.querySelectorAll('.history-section').forEach(section => {
+            observer.observe(section);
+        });
     </script>
 </body>
 </html>
