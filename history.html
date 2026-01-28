@@ -38,14 +38,13 @@
 
         .history-content { flex-grow: 1; min-width: 0; }
 
-        /* 섹션 공통 */
         .history-section { 
             margin-bottom: 180px; opacity: 0; transform: translateY(30px); 
             transition: all 0.8s ease-out; position: relative;
         }
         .history-section.visible { opacity: 1; transform: translateY(0); }
 
-        /* 배치 스타일 */
+        /* 배치 스타일 정의 */
         .top-left { display: flex; gap: 40px; align-items: flex-start; }
         .top-left .text-group { flex: 1; text-align: left; }
         .top-left .photo-grid { flex: 2; }
@@ -57,27 +56,27 @@
         .top-center { display: flex; flex-direction: column; align-items: center; }
         .top-center .text-group { text-align: center; margin-bottom: 40px; }
 
-        /* 텍스트 스타일 */
         .text-group h2 { font-family: 'FreeSerifCustom', serif; font-size: 2.8rem; color: #ffcc00; margin-bottom: 20px; letter-spacing: 2px; line-height: 1.1; }
         .text-group p { font-family: 'Noto Sans KR', sans-serif; font-size: 1.15rem; line-height: 1.8; color: #bcaaa4; font-weight: 300; margin: 0; }
 
-        /* 필름 사진 스타일 */
-        .photo-grid { display: grid; gap: 20px; align-items: start; }
+        /* 사진 테두리 얇게 수정 */
         .photo-grid img, .single-photo img, .grid-2-special img { 
             width: 100%; height: auto; background-color: #fff; 
-            padding: 10px 10px 30px 10px; box-sizing: border-box;
-            border: 1px solid #ddd; box-shadow: 8px 8px 20px rgba(0,0,0,0.5);
-            transform: rotate(-1.5deg); transition: transform 0.3s ease;
+            padding: 6px 6px 15px 6px; /* 여백을 얇게 조정 */
+            box-sizing: border-box;
+            border: 1px solid #ddd; box-shadow: 5px 5px 15px rgba(0,0,0,0.4);
+            transform: rotate(-1.2deg); transition: transform 0.3s ease;
         }
-        .photo-grid img:nth-child(even) { transform: rotate(2deg); }
+        .photo-grid img:nth-child(even) { transform: rotate(1.5deg); }
         .photo-grid img:hover { transform: rotate(0deg) scale(1.05); z-index: 10; }
 
+        .photo-grid { display: grid; gap: 20px; align-items: start; }
         .grid-5 { grid-template-columns: repeat(3, 1fr); }
         .grid-3x3 { grid-template-columns: repeat(3, 1fr); }
         .grid-4 { grid-template-columns: repeat(3, 1fr); }
 
         .grid-2-special { display: flex; flex-direction: column; align-items: center; gap: 30px; }
-        .grid-2-special img.small { width: 40%; max-width: 300px; }
+        .grid-2-special img.small { width: 35%; max-width: 250px; }
         .grid-2-special img.large { width: 95%; max-width: 1100px; }
 
         .single-photo { display: flex; justify-content: center; }
@@ -95,7 +94,7 @@
             .main-container { flex-direction: column; }
             nav { flex-direction: row; flex-wrap: wrap; justify-content: center; position: relative; top: 0; margin-bottom: 50px; gap: 20px; }
             .photo-grid { grid-template-columns: repeat(2, 1fr) !important; }
-            h1.page-title { font-size: 2.5rem; letter-spacing: 5px; }
+            h1.page-title { font-size: 2.3rem; letter-spacing: 5px; }
         }
     </style>
 </head>
@@ -158,9 +157,7 @@
             </section>
 
             <section class="history-section top-center">
-                <div class="text-group">
-                    <h2>BRTX</h2>
-                </div>
+                <div class="text-group"><h2>BRTX</h2></div>
                 <div class="photo-grid grid-4">
                     <img src="images/story/03_공연기_개인_지영.webp"> <img src="images/story/03_공연기_개인_명호.webp">
                     <img src="images/story/03_공연기_개인_윤식.webp"> <img src="images/story/03_공연기_개인_도혁.webp">
@@ -168,9 +165,7 @@
             </section>
 
             <section class="history-section top-center">
-                <div class="text-group">
-                    <h2>headed for</h2>
-                </div>
+                <div class="text-group"><h2>headed for</h2></div>
                 <div class="photo-grid grid-4">
                     <img src="images/story/04_단체_무대_AOR2.webp"> <img src="images/story/06_타지_오방가르드.webp"> <img src="images/story/06_타지_영주스택스.webp">
                 </div>
@@ -216,12 +211,8 @@
             <div class="spacer">그리고...</div>
 
             <section class="history-section top-center">
-                <div class="single-photo">
-                    <img src="images/지도양피지.png">
-                </div>
-                <div class="text-group">
-                    <h2>TO BE CONTINUED</h2>
-                </div>
+                <div class="single-photo"><img src="images/지도양피지.png"></div>
+                <div class="text-group"><h2>TO BE CONTINUED</h2></div>
             </section>
         </div>
     </div>
