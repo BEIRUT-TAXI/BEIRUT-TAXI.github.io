@@ -48,13 +48,12 @@
         .text-group h2 { font-family: 'FreeSerifCustom', serif; font-size: 2.8rem; color: #ffcc00; margin-bottom: 20px; letter-spacing: 2px; line-height: 1.1; }
         .text-group p { font-family: 'Noto Sans KR', sans-serif; font-size: 1.15rem; line-height: 1.8; color: #bcaaa4; font-weight: 300; margin: 0; }
 
-        /* 배치 스타일 */
         .top-left { display: flex; gap: 40px; align-items: flex-start; }
         .top-right { display: flex; flex-direction: row-reverse; gap: 40px; align-items: flex-start; }
         .top-center { display: flex; flex-direction: column; align-items: center; text-align: center; }
 
-        /* 폴라로이드 사진 기본 스타일 */
-        .photo-grid img, .img-wrap img, .single-photo img { 
+        /* 폴라로이드 사진 공통 스타일 */
+        .img-wrap img, .photo-grid img, .single-photo img { 
             width: 100%; height: auto; background-color: #fff; 
             padding: 8px 8px 24px 8px; 
             box-sizing: border-box;
@@ -66,27 +65,42 @@
         .grid-3 { grid-template-columns: repeat(3, 1fr); }
         .grid-3x3 { grid-template-columns: repeat(3, 1fr); }
 
-        /* 복합 그리드 레이아웃 (Primal, BRTX 섹션용) */
-        .combined-grid { 
+        /* 3*3 자유형 그리드 (수정된 핵심 레이아웃) */
+        .grid-3x3-loose {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px 30px;
+            align-items: center;
+            justify-items: center;
+            max-width: 1100px;
+            margin: 100px auto;
+        }
+        .logo-text { font-family: 'FreeSerifCustom', serif; font-size: 3.5rem; color: #ffcc00; }
+
+        /* 개별 사진 위치/회전값 (유연한 배치용) */
+        .pos-1 { transform: rotate(-4deg); margin-top: 5px; }
+        .pos-2 { transform: rotate(5deg); margin-bottom: 10px; }
+        .pos-3 { transform: rotate(-6deg); margin-right: 10px; }
+        .pos-4 { transform: rotate(3deg); margin-left: 15px; }
+        .pos-5 { transform: rotate(-2deg); margin-top: -10px; }
+        .pos-6 { transform: rotate(4deg); }
+        .pos-7 { transform: rotate(-3deg); margin-bottom: 20px; }
+
+        /* Primal Era용 커스텀 레이아웃 */
+        .primal-grid { 
             display: grid; 
             grid-template-columns: repeat(4, 1fr); 
             gap: 20px; 
-            align-items: center;
             max-width: 1100px;
-            margin: 40px auto 0 auto;
+            margin: 40px auto 0;
         }
-        .logo-text { font-family: 'FreeSerifCustom', serif; font-size: 3rem; color: #ffcc00; }
-        
-        /* 사진 위치 및 회전 개별 설정 */
-        .img-p1 { grid-column: 2; transform: rotate(-3deg); }
-        .img-p2 { grid-column: 3; transform: rotate(4deg); }
-        .img-p3 { grid-column: 1; transform: rotate(-5deg); margin-top: -30px; }
-        .img-p4 { grid-column: 2; transform: rotate(2deg); margin-left: 10px; }
-        .img-main { grid-column: 3 / span 2; transform: rotate(-1deg); z-index: 5; }
-        .img-sub1 { grid-column: 2; transform: rotate(-4deg); margin-top: 20px; }
-        .img-sub2 { grid-column: 3; transform: rotate(3deg); margin-top: -10px; }
+        .pr-p1 { grid-column: 2; transform: rotate(-3deg); }
+        .pr-p2 { grid-column: 3; transform: rotate(4deg); }
+        .pr-p3 { grid-column: 1; transform: rotate(-5deg); margin-top: -20px; }
+        .pr-p4 { grid-column: 2; transform: rotate(2deg); }
+        .pr-main { grid-column: 3 / span 2; transform: rotate(-1deg); }
 
-        /* 펜타포트 전용 스타일 */
+        /* 펜타포트 스타일 */
         .penta-grid { display: flex; flex-direction: column; align-items: center; gap: 30px; width: 100%; }
         .penta-logo { width: 180px !important; padding: 0 !important; background: none !important; border: none !important; box-shadow: none !important; transform: none !important; }
         .penta-stage-wrap { width: 100%; display: flex; justify-content: center; }
@@ -99,12 +113,11 @@
 
         @media (max-width: 768px) {
             .main-container { flex-direction: column; }
-            .combined-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-            .img-main { grid-column: 1 / span 2; }
-            .logo-text { font-size: 2rem; }
+            .grid-3x3-loose, .primal-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
+            .pr-main { grid-column: 1 / span 2; }
+            .logo-text { font-size: 2.2rem; }
             nav { flex-direction: row; justify-content: center; gap: 15px; position: relative; top: 0; margin-bottom: 40px; }
             .grid-3, .grid-3x3 { grid-template-columns: repeat(2, 1fr); }
-            .penta-stage-wrap img { width: 95% !important; }
         }
     </style>
 </head>
@@ -126,12 +139,12 @@
                     <h2>PRIMAL ERA</h2>
                     <p>유지영의 데모가 모은 그들.<br>2020년 처음으로 밴드의 형태를 갖추다.<br>Single_Surfer's High</p>
                 </div>
-                <div class="combined-grid">
-                    <div class="img-wrap img-p1"><img src="images/story/01_초기1.webp"></div>
-                    <div class="img-wrap img-p2"><img src="images/story/01_초기2.webp"></div>
-                    <div class="img-wrap img-p3"><img src="images/story/01_초기3.webp"></div>
-                    <div class="img-wrap img-p4"><img src="images/story/05_녹음_머쉬룸1.webp"></div>
-                    <div class="img-wrap img-main"><img src="images/story/05_녹음_머쉬룸_2.webp"></div>
+                <div class="primal-grid">
+                    <div class="img-wrap pr-p1"><img src="images/story/01_초기1.webp"></div>
+                    <div class="img-wrap pr-p2"><img src="images/story/01_초기2.webp"></div>
+                    <div class="img-wrap pr-p3"><img src="images/story/01_초기3.webp"></div>
+                    <div class="img-wrap pr-p4"><img src="images/story/05_녹음_머쉬룸1.webp"></div>
+                    <div class="img-wrap pr-main"><img src="images/story/05_녹음_머쉬룸_2.webp"></div>
                 </div>
             </section>
 
@@ -169,18 +182,20 @@
                 </div>
             </section>
 
-            <section class="history-section combined-grid">
-                <div class="logo-text" style="grid-column: 1;">BRTX</div>
-                <div class="img-wrap img-p1"><img src="images/story/03_공연기_개인_지영.webp"></div>
-                <div class="img-wrap img-p2"><img src="images/story/03_공연기_개인_명호.webp"></div>
-                <div></div>
-                <div class="img-wrap img-p3"><img src="images/story/03_공연기_개인_윤식.webp"></div>
-                <div class="img-wrap img-p4"><img src="images/story/03_공연기_개인_도혁.webp"></div>
-                <div class="img-wrap img-main"><img src="images/story/04_단체_무대_AOR2.webp"></div>
-                <div></div>
-                <div class="img-wrap img-sub1"><img src="images/story/06_타지_오방가르드.webp"></div>
-                <div class="img-wrap img-sub2"><img src="images/story/06_타지_영주스택스.webp"></div>
-                <div class="logo-text" style="grid-column: 4; font-size: 2.2rem;">headed for</div>
+            <section class="history-section">
+                <div class="grid-3x3-loose">
+                    <div class="logo-text">BRTX</div>
+                    <div class="img-wrap pos-1"><img src="images/story/03_공연기_개인_지영.webp"></div>
+                    <div class="img-wrap pos-2"><img src="images/story/03_공연기_개인_명호.webp"></div>
+
+                    <div class="img-wrap pos-3"><img src="images/story/03_공연기_개인_윤식.webp"></div>
+                    <div class="img-wrap pos-4"><img src="images/story/03_공연기_개인_도혁.webp"></div>
+                    <div class="logo-text" style="font-size: 2.2rem;">headed for</div>
+
+                    <div class="img-wrap pos-5"><img src="images/story/04_단체_무대_AOR2.webp"></div>
+                    <div class="img-wrap pos-6"><img src="images/story/06_타지_오방가르드.webp"></div>
+                    <div class="img-wrap pos-7"><img src="images/story/06_타지_영주스택스.webp"></div>
+                </div>
             </section>
 
             <section class="history-section top-center">
@@ -190,7 +205,7 @@
                 </div>
                 <div class="penta-grid">
                     <img src="images/story/07_펜타포트_로고.webp" class="penta-logo">
-                    <div class="penta-stage-wrap"><img src="images/story/07_펜타포트_무대.webp"></div>
+                    <div class="penta-stage-wrap"><img src="images/story/07_펜타포트_무대2.webp"></div>
                 </div>
             </section>
 
