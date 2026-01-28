@@ -6,7 +6,6 @@
     <title>BEIRUT TAXI Official</title>
     <style>
         body {
-            /* 블랙을 더 빼고, 지도의 어두운 톤과 이어지는 미드나잇 브라운으로 변경 */
             background-color: #2b251f; 
             color: #f2e9d9;
             display: flex;
@@ -30,7 +29,6 @@
             margin: 0;
             color: #ffffff;
             text-transform: uppercase;
-            /* 배경과 대비를 위해 그림자 농도 조절 */
             text-shadow: 3px 3px 6px rgba(0,0,0,0.4);
         }
 
@@ -78,10 +76,10 @@
             max-width: 800px;
             display: block;
             border: none;
-            /* 그림자를 조금 더 부드럽게 퍼뜨려 입체감 부여 */
             box-shadow: 0 15px 40px rgba(0,0,0,0.6);
         }
 
+        /* 모바일 대응 수정 섹션 */
         @media (max-width: 768px) {
             header { margin-top: 50px; }
             h1 { font-size: 2.5rem; }
@@ -96,8 +94,9 @@
 
             nav {
                 flex-direction: row;
+                flex-wrap: wrap; /* 메뉴바 잘림 방지: 자리가 없으면 다음 줄로 넘김 */
                 justify-content: center;
-                gap: 25px;
+                gap: 15px; /* 간격 살짝 조정 */
                 min-width: auto;
                 width: 100%;
                 border-bottom: 1px solid rgba(255,255,255,0.05);
@@ -106,7 +105,8 @@
 
             nav a {
                 margin-bottom: 0;
-                font-size: 1.1rem;
+                font-size: 1rem; /* 모바일 가독성을 위해 살짝 조절 */
+                white-space: nowrap; /* 단어 안에서 줄바꿈 방지 */
             }
 
             .photo-content { width: 100%; }
