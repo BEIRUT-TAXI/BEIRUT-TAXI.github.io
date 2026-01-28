@@ -6,7 +6,8 @@
     <title>BEIRUT TAXI Official</title>
     <style>
         body {
-            background-color: #0d0d0d;
+            /* 지도 색상과 대비를 이루는 깊은 다크 브라운 톤으로 변경 */
+            background-color: #1a1612; 
             color: #e0e0e0;
             display: flex;
             flex-direction: column;
@@ -29,11 +30,13 @@
             margin: 0;
             color: #ffffff;
             text-transform: uppercase;
+            /* 제목에 은은한 그림자를 주어 가독성 향상 */
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
 
         .slogan {
             font-size: 1.2rem;
-            color: #ffcc00;
+            color: #ffcc00; /* 골드 포인트 */
             font-style: italic;
             margin-top: 10px;
         }
@@ -46,7 +49,6 @@
             gap: 50px;
         }
 
-        /* 왼쪽 메뉴 */
         nav {
             display: flex;
             flex-direction: column;
@@ -61,9 +63,13 @@
             font-size: 1.3rem;
             letter-spacing: 2px;
             transition: 0.3s;
+            opacity: 0.8;
         }
 
-        nav a:hover { color: #ffcc00; }
+        nav a:hover { 
+            color: #ffcc00; 
+            opacity: 1;
+        }
 
         .photo-content { flex-grow: 1; }
 
@@ -72,30 +78,29 @@
             max-width: 800px;
             display: block;
             border: none;
+            /* 지도의 테두리를 부드럽게 감싸는 효과 */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
-        /* ==========================================
-           📱 모바일 최적화 (768px 이하)
-        ========================================== */
         @media (max-width: 768px) {
             header { margin-top: 50px; }
             h1 { font-size: 2.5rem; }
             .slogan { font-size: 1rem; }
 
             .main-container {
-                flex-direction: column; /* 메뉴를 위로, 사진을 아래로 */
+                flex-direction: column;
                 align-items: center;
                 gap: 30px;
                 margin-top: 40px;
             }
 
             nav {
-                flex-direction: row; /* 메뉴 가로 정렬 */
+                flex-direction: row;
                 justify-content: center;
                 gap: 25px;
                 min-width: auto;
                 width: 100%;
-                border-bottom: 1px solid #222;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
                 padding-bottom: 20px;
             }
 
@@ -125,7 +130,7 @@
 
         <div class="photo-content">
             <img src="https://github.com/BEIRUT-TAXI/BEIRUT-TAXI.github.io/blob/main/images/%EC%A7%80%EB%8F%84%EC%96%91%ED%94%BC%EC%A7%80.png?raw=true" 
-                 alt="BEIRUT TAXI 로고 사진" 
+                 alt="BEIRUT TAXI 지도 배경" 
                  class="band-photo">
         </div>
     </div>
