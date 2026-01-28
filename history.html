@@ -6,26 +6,40 @@
     <title>BEIRUT TAXI - HISTORY</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;500;700&display=swap" rel="stylesheet">
     <style>
+        /* 영문 커스텀 폰트 설정 */
         @font-face {
             font-family: 'FreeSerifCustom';
             src: url('images/FreeSerifBold-rdMp.otf') format('opentype');
-            font-weight: bold; font-style: normal; font-display: swap;
+            font-weight: bold; 
+            font-style: normal; 
+            font-display: swap;
         }
+
         body { 
             background-color: #2b251f; 
             color: #f2e9d9; 
+            /* 영문은 FreeSerifCustom, 한글은 Noto Sans KR 우선 적용 */
             font-family: 'FreeSerifCustom', 'Noto Sans KR', serif; 
             margin: 0; padding-bottom: 150px; overflow-x: hidden;
         }
+
         header { margin-top: 60px; text-align: center; margin-bottom: 80px; }
+        
         h1.page-title { 
+            font-family: 'FreeSerifCustom', serif;
             font-size: 3.5rem; color: #ffcc00; letter-spacing: 10px; 
             text-transform: uppercase; text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+            margin: 0;
         }
 
         .main-container { display: flex; width: 95%; max-width: 1400px; margin: 0 auto; gap: 40px; }
+        
         nav { display: flex; flex-direction: column; min-width: 120px; position: sticky; top: 60px; height: fit-content; }
-        nav a { color: #f2e9d9; text-decoration: none; margin-bottom: 25px; font-size: 1.1rem; letter-spacing: 2px; transition: 0.3s; opacity: 0.7; }
+        nav a { 
+            font-family: 'FreeSerifCustom', serif;
+            color: #f2e9d9; text-decoration: none; margin-bottom: 25px; 
+            font-size: 1.1rem; letter-spacing: 2px; transition: 0.3s; opacity: 0.7; 
+        }
         nav a:hover { opacity: 1; color: #ffcc00; }
 
         .history-content { flex-grow: 1; }
@@ -39,20 +53,27 @@
         .history-section.visible { opacity: 1; transform: translateY(0); }
 
         .text-group { margin-bottom: 30px; }
-        .text-group h2 { font-size: 2.2rem; color: #ffcc00; margin-bottom: 15px; }
-        .text-group p { font-family: 'Noto Sans KR', sans-serif; font-size: 1rem; line-height: 1.8; color: #bcaaa4; max-width: 600px; font-weight: 300; }
+        .text-group h2 { 
+            font-family: 'FreeSerifCustom', serif;
+            font-size: 2.2rem; color: #ffcc00; margin-bottom: 15px; 
+            letter-spacing: 2px;
+        }
+        .text-group p { 
+            font-family: 'Noto Sans KR', sans-serif; 
+            font-size: 1rem; line-height: 1.8; color: #bcaaa4; 
+            max-width: 600px; font-weight: 300; 
+        }
 
         /* 사진 그리드 공통 */
         .photo-grid { display: grid; gap: 15px; margin-top: 20px; }
         .photo-grid img { width: 100%; aspect-ratio: 16/10; object-fit: cover; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
         
-        /* 요청하신 배열 설정 */
         .grid-5 { grid-template-columns: repeat(3, 1fr); }
-        .grid-5 img:nth-child(n+4) { grid-column: span 1; width: calc(150% + 15px); transform: translateX(50%); } /* 2열 2장 중앙 느낌 */
+        .grid-5 img:nth-child(n+4) { grid-column: span 1; width: calc(150% + 15px); transform: translateX(50%); }
         
         .grid-4 { grid-template-columns: repeat(4, 1fr); }
-        .grid-9 { grid-template-columns: repeat(5, 1fr); } /* 1열 5장 */
-        .grid-9 img:nth-child(n+6) { grid-column: span 1; width: calc(125% + 15px); } /* 2열 4장 */
+        .grid-9 { grid-template-columns: repeat(5, 1fr); }
+        .grid-9 img:nth-child(n+6) { grid-column: span 1; width: calc(125% + 15px); }
 
         .grid-2-special { display: flex; flex-direction: column; gap: 15px; }
         .grid-2-special img.small { width: 30%; }
@@ -60,7 +81,11 @@
 
         .single-photo img { width: 100%; max-height: 600px; object-fit: cover; }
 
-        .spacer { height: 100px; display: flex; align-items: center; justify-content: center; font-style: italic; opacity: 0.5; font-size: 1.2rem; }
+        .spacer { 
+            font-family: 'FreeSerifCustom', 'Noto Sans KR', serif;
+            height: 100px; display: flex; align-items: center; justify-content: center; 
+            font-style: italic; opacity: 0.5; font-size: 1.2rem; 
+        }
 
         @media (max-width: 768px) {
             .main-container { flex-direction: column; }
@@ -99,7 +124,7 @@
             <section class="history-section">
                 <div class="text-group">
                     <h2>02. FIRST STEP</h2>
-                    <p>두 번째 역사 단락입니다. 공연 사진이나 연습실 사진 등을<br>배치하기 좋습니다. 4장의 사진이<br>가로로 나열됩니다.</p>
+                    <p>두 번째 역사 단락입니다. 공연 사진이나 연습실 사진 등을 배치하기 좋습니다.<br>4장의 사진이 가로로 나열됩니다.</p>
                 </div>
                 <div class="photo-grid grid-4">
                     <img src="images/h6.jpg"> <img src="images/h7.jpg"> <img src="images/h8.jpg"> <img src="images/h9.jpg">
@@ -109,7 +134,7 @@
             <section class="history-section">
                 <div class="text-group">
                     <h2>03. EXPANSION</h2>
-                    <p>가장 많은 사진(9장)이 들어가는 구간입니다.<br>1열에 5장, 2열에 4장이 배치되어<br>풍성한 느낌을 줍니다.</p>
+                    <p>가장 많은 사진(9장)이 들어가는 구간입니다.<br>1열에 5장, 2열에 4장이 배치되어 풍성한 느낌을 줍니다.</p>
                 </div>
                 <div class="photo-grid grid-9">
                     <img src="img.jpg"> <img src="img.jpg"> <img src="img.jpg"> <img src="img.jpg"> <img src="img.jpg">
@@ -120,7 +145,17 @@
             <section class="history-section">
                 <div class="text-group">
                     <h2>04. MOMENTS</h2>
-                    <p>기록의 순간들입니다. 4장씩 깔끔하게<br>정렬되는 레이아웃을 사용하여<br>안정감을 주었습니다.</p>
+                    <p>기록의 순간들입니다. 4장씩 깔끔하게 정렬되는 레이아웃을 사용하여<br>안정감을 주었습니다.</p>
+                </div>
+                <div class="photo-grid grid-4">
+                    <img src="img.jpg"> <img src="img.jpg"> <img src="img.jpg"> <img src="img.jpg">
+                </div>
+            </section>
+
+            <section class="history-section">
+                <div class="text-group">
+                    <h2>05. STAGE</h2>
+                    <p>무대 위에서의 열정을 담은 사진들입니다.<br>관객과 호흡하던 그날의 기록을 정리해 보세요.</p>
                 </div>
                 <div class="photo-grid grid-4">
                     <img src="img.jpg"> <img src="img.jpg"> <img src="img.jpg"> <img src="img.jpg">
@@ -130,7 +165,7 @@
             <section class="history-section">
                 <div class="text-group">
                     <h2>06. FOCUS</h2>
-                    <p>중요한 장면을 강조할 때 사용하세요.<br>위에는 작게, 아래는 크게 배치하여<br>시선의 흐름을 유도합니다.</p>
+                    <p>중요한 장면을 강조할 때 사용하세요.<br>위에는 작게, 아래는 크게 배치하여 시선의 흐름을 유도합니다.</p>
                 </div>
                 <div class="grid-2-special">
                     <img src="img.jpg" class="small">
@@ -138,11 +173,37 @@
                 </div>
             </section>
 
+            <section class="history-section">
+                <div class="text-group">
+                    <h2>07. GALLERY</h2>
+                    <p>다양한 활동 모습들을 4장씩 나열하여<br>히스토리의 흐름을 이어갑니다.</p>
+                </div>
+                <div class="photo-grid grid-4">
+                    <img src="img.jpg"> <img src="img.jpg"> <img src="img.jpg"> <img src="img.jpg">
+                </div>
+            </section>
+
+            <section class="history-section">
+                <div class="text-group">
+                    <h2>08. RECORD</h2>
+                    <p>단독 사진으로 강렬한 인상을 남기는 단락입니다.</p>
+                </div>
+                <div class="single-photo"><img src="img.jpg"></div>
+            </section>
+
+            <section class="history-section">
+                <div class="text-group">
+                    <h2>09. MEMORY</h2>
+                    <p>또 다른 단독 사진으로 역사를 마무리합니다.</p>
+                </div>
+                <div class="single-photo"><img src="img.jpg"></div>
+            </section>
+
             <div class="spacer">그리고...</div>
 
             <section class="history-section">
                 <div class="text-group">
-                    <h2>TO BE CONTINUED</h2>
+                    <h2 style="text-align: center;">TO BE CONTINUED</h2>
                 </div>
                 <div class="single-photo">
                     <img src="images/final.jpg">
@@ -152,7 +213,6 @@
     </div>
 
     <script>
-        // 스크롤 애니메이션: 화면에 보일 때 visible 클래스 추가
         const observerOptions = { threshold: 0.1 };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
