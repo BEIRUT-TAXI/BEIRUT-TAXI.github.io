@@ -44,73 +44,61 @@
         }
         .history-section.visible { opacity: 1; transform: translateY(0); }
 
-        /* 배치 스타일 */
+        .text-group h2 { font-family: 'FreeSerifCustom', serif; font-size: 2.8rem; color: #ffcc00; margin-bottom: 20px; letter-spacing: 2px; line-height: 1.1; }
+        .text-group p { font-family: 'Noto Sans KR', sans-serif; font-size: 1.15rem; line-height: 1.8; color: #bcaaa4; font-weight: 300; margin: 0; }
+
+        /* 사진 기본 스타일 (폴라로이드) */
+        .img-wrap img, .photo-grid img, .single-photo img { 
+            width: 100%; height: auto; background-color: #fff; 
+            padding: 8px 8px 24px 8px; 
+            box-sizing: border-box;
+            border: 1px solid #ddd; box-shadow: 8px 8px 20px rgba(0,0,0,0.5);
+            transition: transform 0.3s ease;
+        }
+        .img-wrap img:hover { transform: scale(1.05) rotate(0deg) !important; z-index: 10; }
+
+        /* [핵심 수정] BRTX & Headed Section 레이아웃 */
+        .combined-grid { 
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            align-items: center;
+            max-width: 1100px;
+            margin: 0 auto 180px auto;
+        }
+
+        .combined-grid .logo-text { font-family: 'FreeSerifCustom', serif; font-size: 2.8rem; color: #ffcc00; }
+        
+        /* 개별 이미지 wrap 및 회전 효과 */
+        .img-wrap.p1 { grid-column: 2; transform: rotate(-3deg); } /* 지영 */
+        .img-wrap.p2 { grid-column: 3; transform: rotate(4deg); }  /* 명호 */
+        .img-wrap.p3 { grid-column: 1; transform: rotate(-5deg); margin-top: -40px; } /* 도혁 */
+        .img-wrap.p4 { grid-column: 2; transform: rotate(2deg); margin-left: 20px; } /* 윤식 */
+        
+        .main-stage { grid-column: 3 / span 2; transform: rotate(-1deg); z-index: 2; } /* 중앙 공연사진 */
+        .sub-stage1 { grid-column: 2; transform: rotate(-4deg); margin-top: 20px; }
+        .sub-stage2 { grid-column: 3; transform: rotate(3deg); margin-top: -10px; }
+
+        /* 일반 섹션 레이아웃 */
         .top-left { display: flex; gap: 40px; align-items: flex-start; }
         .top-right { display: flex; flex-direction: row-reverse; gap: 40px; align-items: flex-start; }
         .top-center { display: flex; flex-direction: column; align-items: center; text-align: center; }
-        
-        .text-group h2 { font-family: 'FreeSerifCustom', serif; font-size: 2.8rem; color: #ffcc00; margin-bottom: 20px; letter-spacing: 2px; line-height: 1.1; }
-        .text-group p { font-family: 'Noto Sans KR', sans-serif; font-size: 1.15rem; line-height: 1.8; color: #bcaaa4; font-weight: 300; margin: 0; }
-        .top-center .text-group { margin-bottom: 40px; }
+        .photo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; width: 100%; }
+        .photo-grid img:nth-child(odd) { transform: rotate(-2deg); }
+        .photo-grid img:nth-child(even) { transform: rotate(2deg); }
 
-        /* 사진 기본 스타일 (폴라로이드) */
-        .photo-grid img, .single-photo img, .img-wrap img { 
-            width: 100%; height: auto; background-color: #fff; 
-            padding: 6px 6px 15px 6px; 
-            box-sizing: border-box;
-            border: 1px solid #ddd; box-shadow: 5px 5px 15px rgba(0,0,0,0.4);
-            transform: rotate(-1.2deg); transition: transform 0.3s ease;
-        }
-        .photo-grid img:nth-child(even) { transform: rotate(1.5deg); }
-        .photo-grid img:hover { transform: rotate(0deg) scale(1.05); z-index: 10; }
+        /* 펜타포트 전용 */
+        .penta-logo { width: 200px !important; padding: 0 !important; background: none !important; border: none !important; box-shadow: none !important; transform: none !important; margin-bottom: 20px; }
+        .penta-stage img { width: 100%; max-width: 900px; transform: none !important; padding: 0 !important; background: none !important; border: none !important; }
 
-        .photo-grid { display: grid; gap: 20px; align-items: start; }
-        .grid-3 { grid-template-columns: repeat(3, 1fr); }
-        .grid-3x3 { grid-template-columns: repeat(3, 1fr); }
-
-        /* 통합 그리드 섹션 */
-        .combined-grid { display: flex; flex-direction: column; align-items: center; gap: 60px; }
-        .combined-row { display: flex; align-items: center; justify-content: center; width: 100%; gap: 30px; }
-        .combined-row h2 { font-family: 'FreeSerifCustom', serif; font-size: 3rem; color: #ffcc00; margin: 0; white-space: nowrap; }
-        .img-wrap { width: 18%; min-width: 120px; } 
-        .tilt-left { transform: rotate(-5deg); }
-        .tilt-right { transform: rotate(3deg); }
-
-        /* 펜타포트 섹션 수정 - 테두리, 배경, 음영, 회전 모두 제거 */
-        .penta-grid { display: flex; flex-direction: column; align-items: center; gap: 30px; width: 100%; }
-        .penta-logo { 
-            width: 25% !important; max-width: 250px;
-            padding: 0 !important; background: none !important; border: none !important; box-shadow: none !important; transform: none !important;
-        }
-        .penta-stage-wrap { width: 100%; display: flex; justify-content: center; }
-        .penta-stage-wrap img { 
-            width: 90% !important; max-width: 1000px;
-            padding: 0 !important; 
-            background: none !important; 
-            border: none !important; 
-            box-shadow: none !important; 
-            transform: none !important;
-        }
-
-        .single-photo { display: flex; justify-content: center; width: 100%; }
-        .single-photo img { width: 85%; max-width: 900px; }
-
+        .single-photo img { width: 85%; max-width: 800px; transform: rotate(-1deg); }
         .spacer { font-family: 'FreeSerifCustom', serif; height: 120px; display: flex; align-items: center; justify-content: center; font-style: italic; opacity: 0.5; font-size: 1.5rem; color: #ffcc00; }
-
-        /* 반응형 디자인 */
-        @media (max-width: 1024px) {
-            .top-left, .top-right { flex-direction: column; align-items: center; gap: 30px; text-align: center; }
-            .combined-row { flex-wrap: wrap; }
-            .img-wrap { width: 30%; }
-        }
 
         @media (max-width: 768px) {
             .main-container { flex-direction: column; }
-            nav { flex-direction: row; flex-wrap: wrap; justify-content: center; position: relative; top: 0; margin-bottom: 50px; gap: 20px; }
-            .photo-grid { grid-template-columns: repeat(2, 1fr) !important; }
-            .img-wrap { width: 45%; }
-            h1.page-title { font-size: 2.3rem; }
-            .penta-logo { width: 50% !important; }
+            .combined-grid { grid-template-columns: repeat(2, 1fr); }
+            .main-stage { grid-column: 1 / span 2; }
+            nav { flex-direction: row; justify-content: center; gap: 15px; position: relative; top: 0; }
         }
     </style>
 </head>
@@ -132,110 +120,61 @@
                     <h2>PRIMAL ERA</h2>
                     <p>유지영의 데모가 모은 그들.<br>2020년 처음으로 밴드의 형태를 갖추다.<br>Single_Surfer's High</p>
                 </div>
-                <div class="photo-grid grid-3">
+                <div class="photo-grid">
                     <img src="images/story/01_초기1.webp"> <img src="images/story/01_초기2.webp"> <img src="images/story/01_초기3.webp">
-                    <img src="images/story/05_녹음_머쉬룸1.webp"> <img src="images/story/05_녹음_머쉬룸_2.webp">
                 </div>
             </section>
-
-            <div class="spacer">───</div>
 
             <section class="history-section top-right">
                 <div class="text-group">
                     <h2>EMPTY ERA</h2>
                     <p>발매나 무대 기회조차 없었지만<br>다양한 작업을 이어나가며<br>밴드라는 연결을 잃지 않았다.<br>EP_연소</p>
                 </div>
-                <div class="photo-grid grid-3">
+                <div class="photo-grid">
                     <img src="images/story/02_초중기2_음악작업2.webp"> <img src="images/story/02_초중기3_녹음.webp"> <img src="images/story/02_초중기4_녹음.webp">
                 </div>
             </section>
 
-            <section class="history-section top-center">
-                <div class="text-group">
-                    <h2>FIRST STEP</h2>
-                    <p>2022년, 현재 멤버의 결성과 첫 발매, 첫 공연을 서는 영광을 얻다.<br>FIRST STAGE_CLUB FF_220929</p>
-                </div>
-                <div class="photo-grid grid-3">
-                    <img src="images/story/03_공연기1_작업실.webp"> <img src="images/story/03_발매기1_발매축하.webp"> <img src="images/story/03_공연기2_첫공연.webp">
-                </div>
-            </section>
-
-            <section class="history-section top-center">
-                <div class="text-group">
-                    <h2>EXPANSION</h2>
-                    <p>함께 의논하고 헤쳐나가며 각자의 삶과 밴드의 결속을 유지해가다.<br>EP_SEESAW</p>
-                </div>
-                <div class="photo-grid grid-3x3">
-                    <img src="images/story/04_단체_HBC.webp"> <img src="images/story/05_녹음_톤.webp"> <img src="images/story/04_단체_무대_AOR.webp">
-                    <img src="images/story/04_단체_언플라운지.webp"> <img src="images/story/04_단체_프로필.webp"> <img src="images/story/05_녹음_인천창작소.webp">
-                    <img src="images/story/04_단체_연신.webp"> <img src="images/story/04_단체_우주파.webp"> <img src="images/story/04_단체_온에어.webp">
-                </div>
-            </section>
-
             <section class="history-section combined-grid">
-              <section class="history-section combined-grid">
-    <div class="combined-row">
-        <h2 class="tilt-left" style="margin-right: 40px;">BRTX</h2>
-        <div class="img-wrap"><img src="images/story/03_공연기_개인_지영.webp"></div> <div class="img-wrap"><img src="images/story/03_공연기_개인_명호.webp"></div> <div class="img-wrap" style="visibility: hidden;"></div> </div>
-    
-    <div class="combined-row">
-        <div class="img-wrap"><img src="images/story/03_공연기_개인_도혁.webp"></div> <div class="img-wrap" style="width: 40%; min-width: 300px;">
-            <img src="images/story/04_단체_무대_AOR2.webp" style="transform: none;"> </div>
-        <div class="img-wrap"><img src="images/story/03_공연기_개인_윤식.webp"></div> </div>
-    
-    <div class="combined-row" style="margin-top: -20px;">
-        <div class="img-wrap" style="visibility: hidden;"></div> <div class="img-wrap"><img src="images/story/06_타지_오방가르드.webp"></div>
-        <div class="img-wrap"><img src="images/story/06_타지_영주스택스.webp"></div>
-        <h2 class="tilt-right" style="margin-left: 40px;">headed for</h2>
-    </div>
-</section>
+                <div class="logo-text" style="grid-column: 1;">BRTX</div>
+                <div class="img-wrap p1"><img src="images/story/03_공연기_개인_지영.webp"></div>
+                <div class="img-wrap p2"><img src="images/story/03_공연기_개인_명호.webp"></div>
+                <div></div>
+
+                <div class="img-wrap p3"><img src="images/story/03_공연기_개인_윤식.webp"></div>
+                <div class="img-wrap p4"><img src="images/story/03_공연기_개인_도혁.webp"></div>
+                <div class="logo-text" style="grid-column: 4; font-size: 2rem;">headed for</div>
+
+
+                <div></div>
+                <div class="img-wrap sub-stage1"><img src="images/story/06_타지_오방가르드.webp"></div>
+                <div class="img-wrap sub-stage2"><img src="images/story/06_타지_영주스택스.webp"></div>
+                 <div class="img-wrap main-stage"><img src="images/story/04_단체_무대_AOR2.webp"></div>
+                
+            </section>
 
             <section class="history-section top-center">
                 <div class="text-group">
                     <h2>PENTAPORT</h2>
                     <p>꿈의 무대 펜타포트에 서다. <br>멤버들은 여기만 오면 다 끝날줄 알았다.</p>
                 </div>
-                <div class="penta-grid">
-                    <img src="images/story/07_펜타포트_로고.webp" class="penta-logo">
-                    <div class="penta-stage-wrap">
-                        <img src="images/story/07_펜타포트_무대.webp">
-                    </div>
-                </div>
+                <img src="images/story/07_펜타포트_로고.webp" class="penta-logo">
+                <div class="penta-stage"><img src="images/story/07_펜타포트_무대.webp"></div>
             </section>
 
             <section class="history-section top-center">
                 <div class="text-group">
                     <h2>CURRENT</h2>
-                    <p>그 이후로도 쉬지않고 이어온 활동.<br>2025년은 단독공연이 많아지기도.<br>EP_모래알</p>
+                    <p>2025년 단독공연과 활발한 활동.<br>EP_모래알</p>
                 </div>
-                <div class="photo-grid grid-3">
-                    <img src="images/story/04_단체_밴드시그널.webp"> 
-                    <img src="images/story/10_단공_먼프.webp"> 
-                    <img src="images/story/10_단공_우주파.webp">
+                <div class="photo-grid">
+                    <img src="images/story/04_단체_밴드시그널.webp"> <img src="images/story/10_단공_먼프.webp"> <img src="images/story/10_단공_우주파.webp">
                 </div>
             </section>
-
-            <section class="history-section top-center">
-                <div class="text-group">
-                    <h2>NEXT</h2>
-                    <p>2026년 정규발매를 목표로 하고있다.</p>
-                </div>
-                <div class="single-photo"><img src="images/story/09_클립_해파리.webp"></div>
-            </section>
-
-            <section class="history-section top-center">
-                <div class="text-group">
-                    <h2>TASK</h2>
-                    <p>그들에게(사실은 '그'에게) 쥐어진 숙제</p>
-                </div>
-                <div class="single-photo"><img src="images/story/08_악플.webp"></div>
-            </section>
-
-            <div class="spacer">그리고...</div>
 
             <section class="history-section top-center">
                 <div class="single-photo">
-                    <img src="images/지도양피지.png" style="border:none; background:none; box-shadow:none; transform:none; padding:0;">
+                    <img src="images/지도양피지.png" style="border:none; background:none; box-shadow:none; transform:none;">
                 </div>
                 <div class="text-group"><h2>TO BE CONTINUED</h2></div>
             </section>
