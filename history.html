@@ -76,17 +76,22 @@
         .tilt-left { transform: rotate(-5deg); }
         .tilt-right { transform: rotate(3deg); }
 
-        /* 펜타포트 섹션 전용 수정 */
-        .penta-grid { display: flex; flex-direction: column; align-items: center; gap: 30px; width: 100%; }
+        /* 펜타포트 섹션 전용 스타일 */
+        .penta-grid { display: flex; flex-direction: column; align-items: center; gap: 40px; width: 100%; }
         .penta-logo { 
-            width: 50% !important; /* 로고 크기 줄임 */
-            max-width: 400px;
+            width: 35% !important; /* 기존보다 약 80% 크기 */
+            max-width: 350px;
             padding: 0 !important; background: none !important; border: none !important; box-shadow: none !important; transform: none !important;
         }
-        .penta-stage { 
-            width: 100% !important; /* 화면 가득 채우기 */
-            max-width: 1200px; 
-            padding: 0 !important; background: none !important; border: none !important; box-shadow: 0 10px 30px rgba(0,0,0,0.5) !important; transform: none !important;
+        /* 무대 사진을 화면에 꽉 채우기 위한 설정 */
+        .penta-stage-full { 
+            width: 100vw; position: relative; left: 50%; right: 50%; 
+            margin-left: -50vw; margin-right: -50vw; overflow: hidden;
+        }
+        .penta-stage-full img { 
+            width: 100% !important; height: auto; display: block;
+            padding: 0 !important; background: none !important; border: none !important; 
+            box-shadow: none !important; transform: none !important;
         }
 
         .single-photo { display: flex; justify-content: center; width: 100%; }
@@ -107,7 +112,7 @@
             .combined-row { flex-wrap: wrap; }
             .img-wrap { width: 45%; }
             h1.page-title { font-size: 2.3rem; }
-            .penta-logo { width: 80% !important; } /* 모바일에서 로고 너무 작지 않게 조정 */
+            .penta-logo { width: 70% !important; }
         }
     </style>
 </head>
@@ -196,7 +201,9 @@
                 </div>
                 <div class="penta-grid">
                     <img src="images/story/07_펜타포트_로고.webp" class="penta-logo">
-                    <img src="images/story/07_펜타포트_무대.webp" class="penta-stage">
+                    <div class="penta-stage-full">
+                        <img src="images/story/07_펜타포트_무대.webp">
+                    </div>
                 </div>
             </section>
 
@@ -231,7 +238,9 @@
             <div class="spacer">그리고...</div>
 
             <section class="history-section top-center">
-                <div class="single-photo"><img src="images/지도양피지.png" style="border:none; background:none; box-shadow:none; transform:none;"></div>
+                <div class="single-photo">
+                    <img src="images/지도양피지.png" style="border:none; background:none; box-shadow:none; transform:none; padding:0;">
+                </div>
                 <div class="text-group"><h2>TO BE CONTINUED</h2></div>
             </section>
         </div>
