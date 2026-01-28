@@ -58,7 +58,12 @@
             border: 1px solid #ddd; box-shadow: 8px 8px 20px rgba(0,0,0,0.4);
         }
 
-        /* 1번 수정: PRIMAL ERA (W형 배치 강화) */
+        /* 그리드 시스템 */
+        .photo-grid { display: grid; gap: 20px; width: 100%; }
+        .grid-3 { grid-template-columns: repeat(3, 1fr); }
+        .grid-3x3 { grid-template-columns: repeat(3, 1fr); }
+
+        /* PRIMAL ERA W형 배치 */
         .primal-grid { 
             display: grid; 
             grid-template-columns: repeat(6, 1fr); 
@@ -72,7 +77,7 @@
         .pr-p4 { grid-column: 2 / span 2; transform: rotate(2deg); margin-top: -10px; }
         .pr-main { grid-column: 4 / span 2; transform: rotate(-1deg); margin-top: -15px; }
 
-        /* 2번 수정: EMPTY ERA (1-2 / 3 배치) */
+        /* EMPTY ERA */
         .empty-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -81,17 +86,6 @@
             margin: 40px auto 0;
         }
         .empty-p3 { grid-column: 1 / span 2; justify-self: center; width: 60% !important; }
-
-        /* 3번 수정: EXPANSION (2-3 스퀘어 배치) */
-        .expansion-grid {
-            display: grid;
-            grid-template-columns: repeat(6, 1fr);
-            gap: 20px;
-            max-width: 1100px;
-            margin: 40px auto 0;
-        }
-        .ex-row1 { grid-column: span 3; width: 90%; justify-self: center; } /* 상단 2개 */
-        .ex-row2 { grid-column: span 2; width: 100%; } /* 하단 3개 */
 
         /* 자유형 3*3 그리드 */
         .grid-3x3-loose {
@@ -118,15 +112,12 @@
         .single-photo img { width: 85%; max-width: 800px; transform: rotate(-1deg); }
         .spacer { font-family: 'FreeSerifCustom', serif; height: 120px; display: flex; align-items: center; justify-content: center; font-style: italic; opacity: 0.5; font-size: 1.5rem; color: #ffcc00; }
 
-        /* 반응형 설정 */
         @media (max-width: 768px) {
             .main-container { flex-direction: column; }
-            .primal-grid { grid-template-columns: repeat(2, 1fr); }
+            .grid-3, .grid-3x3, .primal-grid, .grid-3x3-loose { grid-template-columns: repeat(2, 1fr); gap: 15px; }
             .pr-p1, .pr-p2, .pr-p3, .pr-p4, .pr-main { grid-column: span 1; margin: 0; }
-            .empty-grid, .expansion-grid { grid-template-columns: repeat(2, 1fr); width: 100%; }
-            .ex-row1, .ex-row2 { grid-column: span 1; width: 100%; }
+            .empty-grid { grid-template-columns: repeat(2, 1fr); width: 100%; }
             .empty-p3 { grid-column: span 2; width: 100% !important; }
-            .grid-3x3-loose { grid-template-columns: repeat(2, 1fr); }
             nav { flex-direction: row; justify-content: center; gap: 15px; position: relative; top: 0; margin-bottom: 40px; }
         }
     </style>
@@ -178,7 +169,9 @@
                     <p>2022년, 현재 멤버의 결성과 첫 발매, 첫 공연.<br>FIRST STAGE_CLUB FF_220929</p>
                 </div>
                 <div class="photo-grid grid-3">
-                    <img src="images/story/03_공연기1_작업실_2.webp"> <img src="images/story/03_발매기1_발매축하.webp"> <img src="images/story/03_공연기2_첫공연.webp">
+                    <img src="images/story/03_공연기1_작업실_2.webp"> 
+                    <img src="images/story/03_발매기1_발매축하.webp"> 
+                    <img src="images/story/03_공연기2_첫공연.webp">
                 </div>
             </section>
 
@@ -187,14 +180,16 @@
                     <h2>EXPANSION</h2>
                     <p>함께 의논하고 헤쳐나가며 각자의 삶과 밴드의 결속을 유지해가다.<br>EP_SEESAW</p>
                 </div>
-                <div class="expansion-grid">
-                   <div class="photo-grid grid-3x3">
-    <img src="images/story/04_단체_HBC.webp">
-    <img src="images/story/05_녹음_톤.webp">
-    <img src="images/story/04_단체_무대_AOR.webp">
-    <img src="images/story/04_단체_언플라운지.webp">
-    <img src="images/story/04_단체_프로필.webp">
-    <img src="images/story/05_녹음_인천창작소.webp"> <img src="images/story/04_단체_연신.webp"> <img src="images/story/04_단체_우주파.webp"> <img src="images/story/04_단체_온에어.webp"> </div>
+                <div class="photo-grid grid-3x3">
+                    <img src="images/story/04_단체_HBC.webp">
+                    <img src="images/story/05_녹음_톤.webp">
+                    <img src="images/story/04_단체_무대_AOR.webp">
+                    <img src="images/story/04_단체_언플라운지.webp">
+                    <img src="images/story/04_단체_프로필.webp">
+                    <img src="images/story/05_녹음_인천창작소.webp"> 
+                    <img src="images/story/04_단체_연신.webp"> 
+                    <img src="images/story/04_단체_우주파.webp"> 
+                    <img src="images/story/04_단체_온에어.webp">
                 </div>
             </section>
 
